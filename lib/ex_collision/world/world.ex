@@ -161,11 +161,11 @@ defmodule ExCollision.World do
           {:ok, world, body}
         else
           new_aabb =
-            AABB.new(
+            AABB.from_xywh(
               x,
               y,
-              x + body.aabb.max_x,
-              y + body.aabb.max_y
+              40,
+              40
             )
 
           if collides?(world, new_aabb, body_id) do
