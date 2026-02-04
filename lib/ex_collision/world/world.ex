@@ -164,8 +164,8 @@ defmodule ExCollision.World do
             AABB.new(
               x,
               y,
-              x + body.aabb.width,
-              y + body.aabb.height
+              x + body.aabb.max_x,
+              y + body.aabb.max_y
             )
 
           if collides?(world, new_aabb, body_id) do
