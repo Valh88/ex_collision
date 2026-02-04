@@ -365,3 +365,2584 @@ Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
 Restart: :permanent
 Shutdown: 5000
 Type: :worker
+21:55:49.841 [info] SIGTERM received - shutting down
+
+14:33:04.904 [debug] Child {XPLoggerFileBackend, :general_log} of Supervisor Logger.Backends.Supervisor started
+Pid: #PID<0.103.0>
+Start Call: Logger.Backends.Watcher.start_link({{XPLoggerFileBackend, :general_log}, {XPLoggerFileBackend, :general_log}})
+Restart: :transient
+Shutdown: 5000
+Type: :worker
+14:33:04.904 [info] Child Logger.Backends.Supervisor of Supervisor Logger.Backends.Internal started
+Pid: #PID<0.102.0>
+Start Call: Logger.Backends.Supervisor.start_link([{XPLoggerFileBackend, :general_log}])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.905 [info] Child Logger.Backends.Internal of Supervisor Logger.Supervisor started
+Pid: #PID<0.98.0>
+Start Call: Logger.Backends.Internal.start_link([])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.905 [info] Application logger started at :nonode@nohost
+14:33:04.905 [info] Application xp_mime started at :nonode@nohost
+14:33:04.905 [info] Application xp_hpax started at :nonode@nohost
+14:33:04.905 [info] Application crypto started at :nonode@nohost
+14:33:04.905 [info] Application asn1 started at :nonode@nohost
+14:33:04.905 [info] Application public_key started at :nonode@nohost
+14:33:04.908 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.108.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+14:33:04.913 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.112.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+14:33:04.916 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.113.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+14:33:04.917 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+14:33:04.918 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.919 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.117.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.920 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.119.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.921 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.120.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.922 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.121.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.922 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.923 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.118.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.923 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.924 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.124.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.925 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.126.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.925 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.127.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.925 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.125.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.925 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.925 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+14:33:04.926 [info] Application ssl started at :nonode@nohost
+14:33:04.926 [info] Application xp_mint started at :nonode@nohost
+14:33:04.926 [info] Application xp_nimble_options started at :nonode@nohost
+14:33:04.931 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.133.0> (Supervisor.Default) started
+Pid: #PID<0.134.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.931 [info] Application xp_nimble_pool started at :nonode@nohost
+14:33:04.934 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.138.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.934 [info] Application xp_telemetry started at :nonode@nohost
+14:33:04.935 [info] Application xp_finch started at :nonode@nohost
+14:33:04.950 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.144.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.950 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.143.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.951 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.145.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.951 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.146.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.951 [info] Child XPReq.Finch of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.951 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.147.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.951 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.148.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.951 [info] Application xp_req started at :nonode@nohost
+14:33:04.951 [info] Application burrito started at :nonode@nohost
+14:33:04.954 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.152.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.954 [info] Application xp_briefly started at :nonode@nohost
+14:33:04.954 [info] Application xp_schematic started at :nonode@nohost
+14:33:04.954 [info] Application xp_typed_struct started at :nonode@nohost
+14:33:04.955 [info] Application xp_gen_lsp started at :nonode@nohost
+14:33:04.962 [info] Child XPSnowflake.Generator of Supervisor #PID<0.155.0> (Supervisor.Default) started
+Pid: #PID<0.156.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.963 [info] Application xp_snowflake started at :nonode@nohost
+14:33:04.963 [info] Application xp_sourceror started at :nonode@nohost
+14:33:04.963 [info] Application xp_spitfire started at :nonode@nohost
+14:33:04.963 [info] Application xp_forge started at :nonode@nohost
+14:33:04.963 [info] Application xp_logger_file_backend started at :nonode@nohost
+14:33:04.968 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.160.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+14:33:04.968 [info] Application runtime_tools started at :nonode@nohost
+14:33:04.968 [info] Application et started at :nonode@nohost
+14:33:04.968 [info] Application observer started at :nonode@nohost
+14:33:04.968 [info] Application xp_path_glob started at :nonode@nohost
+14:33:04.985 [info] Starting NodePortMapper on nonode@nohost
+14:33:04.985 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.987 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.988 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.988 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.990 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.990 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.169.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+14:33:04.991 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.991 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.171.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:04.991 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+14:33:04.996 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.172.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+14:33:04.996 [info] Application xp_expert started at :nonode@nohost
+14:33:05.002 [error] GenServer XPExpert.Buffer terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Last message: {:"$gen_cast", {:incoming, {:error, {:no_translation, :unicode, :latin1}}}}
+State: %{awaiting_response: %{}, comm_data: nil, comm: XPGenLSP.Communication.Stdio, lsp: #PID<0.172.0>}
+14:33:05.006 [error] Process XPExpert.Buffer (#PID<0.170.0>) terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Initial Call: XPGenLSP.Buffer.init/1
+Ancestors: [XPExpert.Supervisor, #PID<0.162.0>]
+Message Queue Length: 0
+Messages: []
+Links: [#PID<0.163.0>, #PID<0.173.0>]
+Dictionary: []
+Trapping Exits: false
+Status: :running
+Heap Size: 17731
+Stack Size: 29
+Reductions: 8604
+Neighbours:
+    #PID<0.173.0>
+        Initial Call: anonymous fn/0 in XPGenLSP.Buffer.read/2
+        Current Call: :io.execute_request/3
+        Ancestors: [#PID<0.170.0>, XPExpert.Supervisor, #PID<0.162.0>]
+        Message Queue Length: 0
+        Links: [#PID<0.170.0>]
+        Trapping Exits: false
+        Status: :waiting
+        Heap Size: 987
+        Stack Size: 34
+        Reductions: 662
+        Current Stacktrace:
+            (stdlib 6.2.2.1) io.erl:1637: :io.execute_request/3
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:59: XPGenLSP.Communication.Stdio.read_header/1
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:38: XPGenLSP.Communication.Stdio.read/2
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:139: anonymous fn/4 in XPGenLSP.Buffer.read/2
+            (elixir 1.17.3) lib/stream.ex:1689: Stream.do_resource/5
+            (elixir 1.17.3) lib/enum.ex:4423: Enum.reverse/1
+            (elixir 1.17.3) lib/enum.ex:3748: Enum.to_list/1
+            (elixir 1.17.3) lib/task/supervised.ex:101: Task.Supervised.invoke_mfa/2
+14:33:05.007 [error] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor terminated
+** (exit) an exception was raised:
+    ** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+        :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+        (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+        (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+        (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+        (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+        (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+14:33:05.007 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.174.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+19:15:14.231 [info] SIGTERM received - shutting down
+
+11:13:20.724 [debug] Child {XPLoggerFileBackend, :general_log} of Supervisor Logger.Backends.Supervisor started
+Pid: #PID<0.103.0>
+Start Call: Logger.Backends.Watcher.start_link({{XPLoggerFileBackend, :general_log}, {XPLoggerFileBackend, :general_log}})
+Restart: :transient
+Shutdown: 5000
+Type: :worker
+11:13:20.724 [info] Child Logger.Backends.Supervisor of Supervisor Logger.Backends.Internal started
+Pid: #PID<0.102.0>
+Start Call: Logger.Backends.Supervisor.start_link([{XPLoggerFileBackend, :general_log}])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.724 [info] Child Logger.Backends.Internal of Supervisor Logger.Supervisor started
+Pid: #PID<0.98.0>
+Start Call: Logger.Backends.Internal.start_link([])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.724 [info] Application logger started at :nonode@nohost
+11:13:20.724 [info] Application xp_mime started at :nonode@nohost
+11:13:20.724 [info] Application xp_hpax started at :nonode@nohost
+11:13:20.725 [info] Application crypto started at :nonode@nohost
+11:13:20.725 [info] Application asn1 started at :nonode@nohost
+11:13:20.725 [info] Application public_key started at :nonode@nohost
+11:13:20.727 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.108.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+11:13:20.732 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.112.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+11:13:20.736 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.113.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+11:13:20.738 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+11:13:20.738 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.740 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.117.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.742 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.119.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.743 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.120.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.743 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.121.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.744 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.744 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.118.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.744 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.746 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.124.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.747 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.126.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.748 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.127.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.748 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.125.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.748 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.748 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:13:20.748 [info] Application ssl started at :nonode@nohost
+11:13:20.749 [info] Application xp_mint started at :nonode@nohost
+11:13:20.750 [info] Application xp_nimble_options started at :nonode@nohost
+11:13:20.753 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.133.0> (Supervisor.Default) started
+Pid: #PID<0.134.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.753 [info] Application xp_nimble_pool started at :nonode@nohost
+11:13:20.755 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.138.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.756 [info] Application xp_telemetry started at :nonode@nohost
+11:13:20.756 [info] Application xp_finch started at :nonode@nohost
+11:13:20.778 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.144.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.778 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.143.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.779 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.145.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.779 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.146.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.779 [info] Child XPReq.Finch of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.779 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.147.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.779 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.148.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.780 [info] Application xp_req started at :nonode@nohost
+11:13:20.780 [info] Application burrito started at :nonode@nohost
+11:13:20.783 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.152.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.783 [info] Application xp_briefly started at :nonode@nohost
+11:13:20.783 [info] Application xp_schematic started at :nonode@nohost
+11:13:20.783 [info] Application xp_typed_struct started at :nonode@nohost
+11:13:20.784 [info] Application xp_gen_lsp started at :nonode@nohost
+11:13:20.794 [info] Child XPSnowflake.Generator of Supervisor #PID<0.155.0> (Supervisor.Default) started
+Pid: #PID<0.156.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.794 [info] Application xp_snowflake started at :nonode@nohost
+11:13:20.794 [info] Application xp_sourceror started at :nonode@nohost
+11:13:20.794 [info] Application xp_spitfire started at :nonode@nohost
+11:13:20.794 [info] Application xp_forge started at :nonode@nohost
+11:13:20.794 [info] Application xp_logger_file_backend started at :nonode@nohost
+11:13:20.799 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.160.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+11:13:20.799 [info] Application runtime_tools started at :nonode@nohost
+11:13:20.799 [info] Application et started at :nonode@nohost
+11:13:20.800 [info] Application observer started at :nonode@nohost
+11:13:20.800 [info] Application xp_path_glob started at :nonode@nohost
+11:13:20.816 [info] Starting NodePortMapper on nonode@nohost
+11:13:20.816 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.818 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.819 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.819 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.821 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.821 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.169.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:13:20.822 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.823 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.171.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.823 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+11:13:20.829 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.172.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+11:13:20.829 [info] Application xp_expert started at :nonode@nohost
+11:13:20.836 [error] GenServer XPExpert.Buffer terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Last message: {:"$gen_cast", {:incoming, {:error, {:no_translation, :unicode, :latin1}}}}
+State: %{awaiting_response: %{}, comm_data: nil, comm: XPGenLSP.Communication.Stdio, lsp: #PID<0.172.0>}
+11:13:20.845 [error] Process XPExpert.Buffer (#PID<0.170.0>) terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Initial Call: XPGenLSP.Buffer.init/1
+Ancestors: [XPExpert.Supervisor, #PID<0.162.0>]
+Message Queue Length: 0
+Messages: []
+Links: [#PID<0.163.0>, #PID<0.173.0>]
+Dictionary: []
+Trapping Exits: false
+Status: :running
+Heap Size: 17731
+Stack Size: 29
+Reductions: 8604
+Neighbours:
+    #PID<0.173.0>
+        Initial Call: anonymous fn/0 in XPGenLSP.Buffer.read/2
+        Current Call: :io.execute_request/3
+        Ancestors: [#PID<0.170.0>, XPExpert.Supervisor, #PID<0.162.0>]
+        Message Queue Length: 0
+        Links: [#PID<0.170.0>]
+        Trapping Exits: false
+        Status: :waiting
+        Heap Size: 987
+        Stack Size: 34
+        Reductions: 662
+        Current Stacktrace:
+            (stdlib 6.2.2.1) io.erl:1637: :io.execute_request/3
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:59: XPGenLSP.Communication.Stdio.read_header/1
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:38: XPGenLSP.Communication.Stdio.read/2
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:139: anonymous fn/4 in XPGenLSP.Buffer.read/2
+            (elixir 1.17.3) lib/stream.ex:1689: Stream.do_resource/5
+            (elixir 1.17.3) lib/enum.ex:4423: Enum.reverse/1
+            (elixir 1.17.3) lib/enum.ex:3748: Enum.to_list/1
+            (elixir 1.17.3) lib/task/supervised.ex:101: Task.Supervised.invoke_mfa/2
+11:13:20.846 [error] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor terminated
+** (exit) an exception was raised:
+    ** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+        :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+        (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+        (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+        (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+        (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+        (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:13:20.847 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.174.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.242 [debug] Child {XPLoggerFileBackend, :general_log} of Supervisor Logger.Backends.Supervisor started
+Pid: #PID<0.103.0>
+Start Call: Logger.Backends.Watcher.start_link({{XPLoggerFileBackend, :general_log}, {XPLoggerFileBackend, :general_log}})
+Restart: :transient
+Shutdown: 5000
+Type: :worker
+15:29:18.242 [info] Child Logger.Backends.Supervisor of Supervisor Logger.Backends.Internal started
+Pid: #PID<0.102.0>
+Start Call: Logger.Backends.Supervisor.start_link([{XPLoggerFileBackend, :general_log}])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.242 [info] Child Logger.Backends.Internal of Supervisor Logger.Supervisor started
+Pid: #PID<0.98.0>
+Start Call: Logger.Backends.Internal.start_link([])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.243 [info] Application logger started at :nonode@nohost
+15:29:18.243 [info] Application xp_mime started at :nonode@nohost
+15:29:18.243 [info] Application xp_hpax started at :nonode@nohost
+15:29:18.243 [info] Application crypto started at :nonode@nohost
+15:29:18.243 [info] Application asn1 started at :nonode@nohost
+15:29:18.243 [info] Application public_key started at :nonode@nohost
+15:29:18.245 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.108.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+15:29:18.248 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.112.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+15:29:18.250 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.113.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+15:29:18.250 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+15:29:18.250 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.251 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.117.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.253 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.119.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.253 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.120.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.254 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.121.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.254 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.254 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.118.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.254 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.255 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.124.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.256 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.126.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.257 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.127.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.257 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.125.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.257 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.257 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:29:18.257 [info] Application ssl started at :nonode@nohost
+15:29:18.258 [info] Application xp_mint started at :nonode@nohost
+15:29:18.258 [info] Application xp_nimble_options started at :nonode@nohost
+15:29:18.261 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.133.0> (Supervisor.Default) started
+Pid: #PID<0.134.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.261 [info] Application xp_nimble_pool started at :nonode@nohost
+15:29:18.263 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.138.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.263 [info] Application xp_telemetry started at :nonode@nohost
+15:29:18.263 [info] Application xp_finch started at :nonode@nohost
+15:29:18.275 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.144.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.275 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.143.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.275 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.145.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.275 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.146.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.276 [info] Child XPReq.Finch of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.276 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.147.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.276 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.148.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.276 [info] Application xp_req started at :nonode@nohost
+15:29:18.276 [info] Application burrito started at :nonode@nohost
+15:29:18.277 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.152.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.278 [info] Application xp_briefly started at :nonode@nohost
+15:29:18.278 [info] Application xp_schematic started at :nonode@nohost
+15:29:18.278 [info] Application xp_typed_struct started at :nonode@nohost
+15:29:18.278 [info] Application xp_gen_lsp started at :nonode@nohost
+15:29:18.283 [info] Child XPSnowflake.Generator of Supervisor #PID<0.155.0> (Supervisor.Default) started
+Pid: #PID<0.156.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.284 [info] Application xp_snowflake started at :nonode@nohost
+15:29:18.284 [info] Application xp_sourceror started at :nonode@nohost
+15:29:18.284 [info] Application xp_spitfire started at :nonode@nohost
+15:29:18.284 [info] Application xp_forge started at :nonode@nohost
+15:29:18.284 [info] Application xp_logger_file_backend started at :nonode@nohost
+15:29:18.287 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.160.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+15:29:18.287 [info] Application runtime_tools started at :nonode@nohost
+15:29:18.287 [info] Application et started at :nonode@nohost
+15:29:18.287 [info] Application observer started at :nonode@nohost
+15:29:18.287 [info] Application xp_path_glob started at :nonode@nohost
+15:29:18.296 [info] Starting NodePortMapper on nonode@nohost
+15:29:18.296 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.297 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.298 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.298 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.299 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.299 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.169.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:29:18.300 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.300 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.171.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.300 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+15:29:18.304 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.172.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+15:29:18.304 [info] Application xp_expert started at :nonode@nohost
+15:29:18.309 [error] GenServer XPExpert.Buffer terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Last message: {:"$gen_cast", {:incoming, {:error, {:no_translation, :unicode, :latin1}}}}
+State: %{awaiting_response: %{}, comm_data: nil, comm: XPGenLSP.Communication.Stdio, lsp: #PID<0.172.0>}
+15:29:18.317 [error] Process XPExpert.Buffer (#PID<0.170.0>) terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Initial Call: XPGenLSP.Buffer.init/1
+Ancestors: [XPExpert.Supervisor, #PID<0.162.0>]
+Message Queue Length: 0
+Messages: []
+Links: [#PID<0.163.0>, #PID<0.173.0>]
+Dictionary: []
+Trapping Exits: false
+Status: :running
+Heap Size: 17731
+Stack Size: 29
+Reductions: 8604
+Neighbours:
+    #PID<0.173.0>
+        Initial Call: anonymous fn/0 in XPGenLSP.Buffer.read/2
+        Current Call: :io.execute_request/3
+        Ancestors: [#PID<0.170.0>, XPExpert.Supervisor, #PID<0.162.0>]
+        Message Queue Length: 0
+        Links: [#PID<0.170.0>]
+        Trapping Exits: false
+        Status: :waiting
+        Heap Size: 987
+        Stack Size: 34
+        Reductions: 662
+        Current Stacktrace:
+            (stdlib 6.2.2.1) io.erl:1637: :io.execute_request/3
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:59: XPGenLSP.Communication.Stdio.read_header/1
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:38: XPGenLSP.Communication.Stdio.read/2
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:139: anonymous fn/4 in XPGenLSP.Buffer.read/2
+            (elixir 1.17.3) lib/stream.ex:1689: Stream.do_resource/5
+            (elixir 1.17.3) lib/enum.ex:4423: Enum.reverse/1
+            (elixir 1.17.3) lib/enum.ex:3748: Enum.to_list/1
+            (elixir 1.17.3) lib/task/supervised.ex:101: Task.Supervised.invoke_mfa/2
+15:29:18.317 [error] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor terminated
+** (exit) an exception was raised:
+    ** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+        :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+        (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+        (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+        (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+        (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+        (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:29:18.318 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.174.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+20:36:36.231 [info] SIGTERM received - shutting down
+
+12:37:02.532 [debug] Child {XPLoggerFileBackend, :general_log} of Supervisor Logger.Backends.Supervisor started
+Pid: #PID<0.103.0>
+Start Call: Logger.Backends.Watcher.start_link({{XPLoggerFileBackend, :general_log}, {XPLoggerFileBackend, :general_log}})
+Restart: :transient
+Shutdown: 5000
+Type: :worker
+12:37:02.532 [info] Child Logger.Backends.Supervisor of Supervisor Logger.Backends.Internal started
+Pid: #PID<0.102.0>
+Start Call: Logger.Backends.Supervisor.start_link([{XPLoggerFileBackend, :general_log}])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.532 [info] Child Logger.Backends.Internal of Supervisor Logger.Supervisor started
+Pid: #PID<0.98.0>
+Start Call: Logger.Backends.Internal.start_link([])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.532 [info] Application logger started at :nonode@nohost
+12:37:02.532 [info] Application xp_mime started at :nonode@nohost
+12:37:02.532 [info] Application xp_hpax started at :nonode@nohost
+12:37:02.532 [info] Application crypto started at :nonode@nohost
+12:37:02.533 [info] Application asn1 started at :nonode@nohost
+12:37:02.533 [info] Application public_key started at :nonode@nohost
+12:37:02.535 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.108.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+12:37:02.538 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.112.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+12:37:02.540 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.113.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+12:37:02.541 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+12:37:02.541 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.543 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.117.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.544 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.119.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.545 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.120.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.545 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.121.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.546 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.546 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.118.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.546 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.547 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.124.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.548 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.126.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.549 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.127.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.549 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.125.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.549 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.549 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+12:37:02.549 [info] Application ssl started at :nonode@nohost
+12:37:02.550 [info] Application xp_mint started at :nonode@nohost
+12:37:02.550 [info] Application xp_nimble_options started at :nonode@nohost
+12:37:02.552 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.133.0> (Supervisor.Default) started
+Pid: #PID<0.134.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.553 [info] Application xp_nimble_pool started at :nonode@nohost
+12:37:02.554 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.138.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.554 [info] Application xp_telemetry started at :nonode@nohost
+12:37:02.554 [info] Application xp_finch started at :nonode@nohost
+12:37:02.568 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.144.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.568 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.143.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.568 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.145.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.569 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.146.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.569 [info] Child XPReq.Finch of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.569 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.147.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.569 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.148.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.569 [info] Application xp_req started at :nonode@nohost
+12:37:02.569 [info] Application burrito started at :nonode@nohost
+12:37:02.572 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.152.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.572 [info] Application xp_briefly started at :nonode@nohost
+12:37:02.572 [info] Application xp_schematic started at :nonode@nohost
+12:37:02.572 [info] Application xp_typed_struct started at :nonode@nohost
+12:37:02.572 [info] Application xp_gen_lsp started at :nonode@nohost
+12:37:02.578 [info] Child XPSnowflake.Generator of Supervisor #PID<0.155.0> (Supervisor.Default) started
+Pid: #PID<0.156.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.579 [info] Application xp_snowflake started at :nonode@nohost
+12:37:02.579 [info] Application xp_sourceror started at :nonode@nohost
+12:37:02.579 [info] Application xp_spitfire started at :nonode@nohost
+12:37:02.579 [info] Application xp_forge started at :nonode@nohost
+12:37:02.579 [info] Application xp_logger_file_backend started at :nonode@nohost
+12:37:02.582 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.160.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+12:37:02.582 [info] Application runtime_tools started at :nonode@nohost
+12:37:02.582 [info] Application et started at :nonode@nohost
+12:37:02.582 [info] Application observer started at :nonode@nohost
+12:37:02.582 [info] Application xp_path_glob started at :nonode@nohost
+12:37:02.589 [info] Starting NodePortMapper on nonode@nohost
+12:37:02.589 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.590 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.590 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.590 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.592 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.592 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.169.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+12:37:02.593 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.593 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.171.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.593 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+12:37:02.598 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.172.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+12:37:02.598 [info] Application xp_expert started at :nonode@nohost
+12:37:02.605 [error] GenServer XPExpert.Buffer terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Last message: {:"$gen_cast", {:incoming, {:error, {:no_translation, :unicode, :latin1}}}}
+State: %{awaiting_response: %{}, comm_data: nil, comm: XPGenLSP.Communication.Stdio, lsp: #PID<0.172.0>}
+12:37:02.609 [error] Process XPExpert.Buffer (#PID<0.170.0>) terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Initial Call: XPGenLSP.Buffer.init/1
+Ancestors: [XPExpert.Supervisor, #PID<0.162.0>]
+Message Queue Length: 0
+Messages: []
+Links: [#PID<0.163.0>, #PID<0.173.0>]
+Dictionary: []
+Trapping Exits: false
+Status: :running
+Heap Size: 17731
+Stack Size: 29
+Reductions: 8604
+Neighbours:
+    #PID<0.173.0>
+        Initial Call: anonymous fn/0 in XPGenLSP.Buffer.read/2
+        Current Call: :io.execute_request/3
+        Ancestors: [#PID<0.170.0>, XPExpert.Supervisor, #PID<0.162.0>]
+        Message Queue Length: 0
+        Links: [#PID<0.170.0>]
+        Trapping Exits: false
+        Status: :waiting
+        Heap Size: 987
+        Stack Size: 34
+        Reductions: 662
+        Current Stacktrace:
+            (stdlib 6.2.2.1) io.erl:1637: :io.execute_request/3
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:59: XPGenLSP.Communication.Stdio.read_header/1
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:38: XPGenLSP.Communication.Stdio.read/2
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:139: anonymous fn/4 in XPGenLSP.Buffer.read/2
+            (elixir 1.17.3) lib/stream.ex:1689: Stream.do_resource/5
+            (elixir 1.17.3) lib/enum.ex:4423: Enum.reverse/1
+            (elixir 1.17.3) lib/enum.ex:3748: Enum.to_list/1
+            (elixir 1.17.3) lib/task/supervised.ex:101: Task.Supervised.invoke_mfa/2
+12:37:02.610 [error] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor terminated
+** (exit) an exception was raised:
+    ** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+        :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+        (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+        (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+        (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+        (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+        (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+12:37:02.611 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.174.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.928 [debug] Child {XPLoggerFileBackend, :general_log} of Supervisor Logger.Backends.Supervisor started
+Pid: #PID<0.103.0>
+Start Call: Logger.Backends.Watcher.start_link({{XPLoggerFileBackend, :general_log}, {XPLoggerFileBackend, :general_log}})
+Restart: :transient
+Shutdown: 5000
+Type: :worker
+15:37:22.928 [info] Child Logger.Backends.Supervisor of Supervisor Logger.Backends.Internal started
+Pid: #PID<0.102.0>
+Start Call: Logger.Backends.Supervisor.start_link([{XPLoggerFileBackend, :general_log}])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:22.929 [info] Child Logger.Backends.Internal of Supervisor Logger.Supervisor started
+Pid: #PID<0.98.0>
+Start Call: Logger.Backends.Internal.start_link([])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:22.929 [info] Application logger started at :nonode@nohost
+15:37:22.929 [info] Application xp_mime started at :nonode@nohost
+15:37:22.929 [info] Application xp_hpax started at :nonode@nohost
+15:37:22.929 [info] Application crypto started at :nonode@nohost
+15:37:22.929 [info] Application asn1 started at :nonode@nohost
+15:37:22.929 [info] Application public_key started at :nonode@nohost
+15:37:22.931 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.108.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+15:37:22.941 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.112.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+15:37:22.944 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.113.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+15:37:22.945 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+15:37:22.945 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.948 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.117.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.949 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.119.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.950 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.120.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.950 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.121.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.951 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.951 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.118.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.951 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.953 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.124.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.954 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.126.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.955 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.127.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.955 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.125.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.955 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.955 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+15:37:22.955 [info] Application ssl started at :nonode@nohost
+15:37:22.956 [info] Application xp_mint started at :nonode@nohost
+15:37:22.956 [info] Application xp_nimble_options started at :nonode@nohost
+15:37:22.958 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.133.0> (Supervisor.Default) started
+Pid: #PID<0.134.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:22.958 [info] Application xp_nimble_pool started at :nonode@nohost
+15:37:22.960 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.138.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.960 [info] Application xp_telemetry started at :nonode@nohost
+15:37:22.961 [info] Application xp_finch started at :nonode@nohost
+15:37:22.983 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.144.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.984 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.143.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:22.984 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.145.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:22.984 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.146.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.984 [info] Child XPReq.Finch of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.984 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.147.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:22.984 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.148.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.984 [info] Application xp_req started at :nonode@nohost
+15:37:22.984 [info] Application burrito started at :nonode@nohost
+15:37:22.988 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.152.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.988 [info] Application xp_briefly started at :nonode@nohost
+15:37:22.989 [info] Application xp_schematic started at :nonode@nohost
+15:37:22.989 [info] Application xp_typed_struct started at :nonode@nohost
+15:37:22.989 [info] Application xp_gen_lsp started at :nonode@nohost
+15:37:22.999 [info] Child XPSnowflake.Generator of Supervisor #PID<0.155.0> (Supervisor.Default) started
+Pid: #PID<0.156.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:22.999 [info] Application xp_snowflake started at :nonode@nohost
+15:37:22.999 [info] Application xp_sourceror started at :nonode@nohost
+15:37:22.999 [info] Application xp_spitfire started at :nonode@nohost
+15:37:22.999 [info] Application xp_forge started at :nonode@nohost
+15:37:22.999 [info] Application xp_logger_file_backend started at :nonode@nohost
+15:37:23.005 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.160.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+15:37:23.005 [info] Application runtime_tools started at :nonode@nohost
+15:37:23.005 [info] Application et started at :nonode@nohost
+15:37:23.005 [info] Application observer started at :nonode@nohost
+15:37:23.005 [info] Application xp_path_glob started at :nonode@nohost
+15:37:23.027 [info] Starting NodePortMapper on nonode@nohost
+15:37:23.027 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:23.029 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:23.030 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:23.030 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:23.033 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:23.033 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.169.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+15:37:23.035 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:23.035 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.171.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:23.035 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+15:37:23.042 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.172.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+15:37:23.043 [info] Application xp_expert started at :nonode@nohost
+15:37:23.061 [error] GenServer XPExpert.Buffer terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Last message: {:"$gen_cast", {:incoming, {:error, {:no_translation, :unicode, :latin1}}}}
+State: %{awaiting_response: %{}, comm_data: nil, comm: XPGenLSP.Communication.Stdio, lsp: #PID<0.172.0>}
+15:37:23.068 [error] Process XPExpert.Buffer (#PID<0.170.0>) terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Initial Call: XPGenLSP.Buffer.init/1
+Ancestors: [XPExpert.Supervisor, #PID<0.162.0>]
+Message Queue Length: 0
+Messages: []
+Links: [#PID<0.163.0>, #PID<0.173.0>]
+Dictionary: []
+Trapping Exits: false
+Status: :running
+Heap Size: 17731
+Stack Size: 29
+Reductions: 8604
+Neighbours:
+    #PID<0.173.0>
+        Initial Call: anonymous fn/0 in XPGenLSP.Buffer.read/2
+        Current Call: :io.execute_request/3
+        Ancestors: [#PID<0.170.0>, XPExpert.Supervisor, #PID<0.162.0>]
+        Message Queue Length: 0
+        Links: [#PID<0.170.0>]
+        Trapping Exits: false
+        Status: :waiting
+        Heap Size: 987
+        Stack Size: 34
+        Reductions: 662
+        Current Stacktrace:
+            (stdlib 6.2.2.1) io.erl:1637: :io.execute_request/3
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:59: XPGenLSP.Communication.Stdio.read_header/1
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:38: XPGenLSP.Communication.Stdio.read/2
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:139: anonymous fn/4 in XPGenLSP.Buffer.read/2
+            (elixir 1.17.3) lib/stream.ex:1689: Stream.do_resource/5
+            (elixir 1.17.3) lib/enum.ex:4423: Enum.reverse/1
+            (elixir 1.17.3) lib/enum.ex:3748: Enum.to_list/1
+            (elixir 1.17.3) lib/task/supervised.ex:101: Task.Supervised.invoke_mfa/2
+15:37:23.070 [error] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor terminated
+** (exit) an exception was raised:
+    ** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+        :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+        (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+        (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+        (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+        (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+        (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+15:37:23.071 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.174.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.517 [debug] Child {XPLoggerFileBackend, :general_log} of Supervisor Logger.Backends.Supervisor started
+Pid: #PID<0.103.0>
+Start Call: Logger.Backends.Watcher.start_link({{XPLoggerFileBackend, :general_log}, {XPLoggerFileBackend, :general_log}})
+Restart: :transient
+Shutdown: 5000
+Type: :worker
+23:02:28.518 [info] Child Logger.Backends.Supervisor of Supervisor Logger.Backends.Internal started
+Pid: #PID<0.102.0>
+Start Call: Logger.Backends.Supervisor.start_link([{XPLoggerFileBackend, :general_log}])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.518 [info] Child Logger.Backends.Internal of Supervisor Logger.Supervisor started
+Pid: #PID<0.98.0>
+Start Call: Logger.Backends.Internal.start_link([])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.518 [info] Application logger started at :nonode@nohost
+23:02:28.518 [info] Application xp_mime started at :nonode@nohost
+23:02:28.518 [info] Application xp_hpax started at :nonode@nohost
+23:02:28.518 [info] Application crypto started at :nonode@nohost
+23:02:28.518 [info] Application asn1 started at :nonode@nohost
+23:02:28.518 [info] Application public_key started at :nonode@nohost
+23:02:28.521 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.108.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+23:02:28.541 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.112.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+23:02:28.551 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.113.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+23:02:28.563 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+23:02:28.563 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.578 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.117.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.579 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.119.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.580 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.120.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.580 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.121.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.581 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.581 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.118.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.582 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.583 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.124.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.585 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.126.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.586 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.127.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.586 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.125.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.586 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.586 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+23:02:28.586 [info] Application ssl started at :nonode@nohost
+23:02:28.587 [info] Application xp_mint started at :nonode@nohost
+23:02:28.587 [info] Application xp_nimble_options started at :nonode@nohost
+23:02:28.590 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.133.0> (Supervisor.Default) started
+Pid: #PID<0.134.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.591 [info] Application xp_nimble_pool started at :nonode@nohost
+23:02:28.593 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.138.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.593 [info] Application xp_telemetry started at :nonode@nohost
+23:02:28.593 [info] Application xp_finch started at :nonode@nohost
+23:02:28.613 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.144.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.613 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.143.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.614 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.145.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.614 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.146.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.614 [info] Child XPReq.Finch of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.614 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.147.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.614 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.148.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.614 [info] Application xp_req started at :nonode@nohost
+23:02:28.614 [info] Application burrito started at :nonode@nohost
+23:02:28.618 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.152.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.619 [info] Application xp_briefly started at :nonode@nohost
+23:02:28.619 [info] Application xp_schematic started at :nonode@nohost
+23:02:28.619 [info] Application xp_typed_struct started at :nonode@nohost
+23:02:28.619 [info] Application xp_gen_lsp started at :nonode@nohost
+23:02:28.627 [info] Child XPSnowflake.Generator of Supervisor #PID<0.155.0> (Supervisor.Default) started
+Pid: #PID<0.156.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.628 [info] Application xp_snowflake started at :nonode@nohost
+23:02:28.628 [info] Application xp_sourceror started at :nonode@nohost
+23:02:28.628 [info] Application xp_spitfire started at :nonode@nohost
+23:02:28.628 [info] Application xp_forge started at :nonode@nohost
+23:02:28.628 [info] Application xp_logger_file_backend started at :nonode@nohost
+23:02:28.631 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.160.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+23:02:28.631 [info] Application runtime_tools started at :nonode@nohost
+23:02:28.631 [info] Application et started at :nonode@nohost
+23:02:28.632 [info] Application observer started at :nonode@nohost
+23:02:28.632 [info] Application xp_path_glob started at :nonode@nohost
+23:02:28.644 [info] Starting NodePortMapper on nonode@nohost
+23:02:28.644 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.645 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.646 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.646 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.648 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.648 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.169.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+23:02:28.649 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.649 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.171.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.649 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+23:02:28.656 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.172.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+23:02:28.656 [info] Application xp_expert started at :nonode@nohost
+23:02:28.664 [error] GenServer XPExpert.Buffer terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Last message: {:"$gen_cast", {:incoming, {:error, {:no_translation, :unicode, :latin1}}}}
+State: %{awaiting_response: %{}, comm_data: nil, comm: XPGenLSP.Communication.Stdio, lsp: #PID<0.172.0>}
+23:02:28.669 [error] Process XPExpert.Buffer (#PID<0.170.0>) terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Initial Call: XPGenLSP.Buffer.init/1
+Ancestors: [XPExpert.Supervisor, #PID<0.162.0>]
+Message Queue Length: 0
+Messages: []
+Links: [#PID<0.163.0>, #PID<0.173.0>]
+Dictionary: []
+Trapping Exits: false
+Status: :running
+Heap Size: 17731
+Stack Size: 29
+Reductions: 8604
+Neighbours:
+    #PID<0.173.0>
+        Initial Call: anonymous fn/0 in XPGenLSP.Buffer.read/2
+        Current Call: :io.execute_request/3
+        Ancestors: [#PID<0.170.0>, XPExpert.Supervisor, #PID<0.162.0>]
+        Message Queue Length: 0
+        Links: [#PID<0.170.0>]
+        Trapping Exits: false
+        Status: :waiting
+        Heap Size: 987
+        Stack Size: 34
+        Reductions: 662
+        Current Stacktrace:
+            (stdlib 6.2.2.1) io.erl:1637: :io.execute_request/3
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:59: XPGenLSP.Communication.Stdio.read_header/1
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:38: XPGenLSP.Communication.Stdio.read/2
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:139: anonymous fn/4 in XPGenLSP.Buffer.read/2
+            (elixir 1.17.3) lib/stream.ex:1689: Stream.do_resource/5
+            (elixir 1.17.3) lib/enum.ex:4423: Enum.reverse/1
+            (elixir 1.17.3) lib/enum.ex:3748: Enum.to_list/1
+            (elixir 1.17.3) lib/task/supervised.ex:101: Task.Supervised.invoke_mfa/2
+23:02:28.670 [error] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor terminated
+** (exit) an exception was raised:
+    ** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+        :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+        (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+        (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+        (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+        (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+        (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+23:02:28.670 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.174.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+01:39:34.814 [info] SIGTERM received - shutting down
+
+01:39:34.823 [info] SIGTERM received - shutting down
+
+01:39:34.827 [info] SIGTERM received - shutting down
+
+11:29:07.936 [debug] Child {XPLoggerFileBackend, :general_log} of Supervisor Logger.Backends.Supervisor started
+Pid: #PID<0.103.0>
+Start Call: Logger.Backends.Watcher.start_link({{XPLoggerFileBackend, :general_log}, {XPLoggerFileBackend, :general_log}})
+Restart: :transient
+Shutdown: 5000
+Type: :worker
+11:29:07.936 [info] Child Logger.Backends.Supervisor of Supervisor Logger.Backends.Internal started
+Pid: #PID<0.102.0>
+Start Call: Logger.Backends.Supervisor.start_link([{XPLoggerFileBackend, :general_log}])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:07.937 [info] Child Logger.Backends.Internal of Supervisor Logger.Supervisor started
+Pid: #PID<0.98.0>
+Start Call: Logger.Backends.Internal.start_link([])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:07.937 [info] Application logger started at :nonode@nohost
+11:29:07.937 [info] Application xp_mime started at :nonode@nohost
+11:29:07.937 [info] Application xp_hpax started at :nonode@nohost
+11:29:07.937 [info] Application crypto started at :nonode@nohost
+11:29:07.937 [info] Application asn1 started at :nonode@nohost
+11:29:07.937 [info] Application public_key started at :nonode@nohost
+11:29:07.942 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.108.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+11:29:07.946 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.112.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+11:29:07.950 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.113.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+11:29:07.951 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+11:29:07.951 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.955 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.117.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.971 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.119.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.979 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.120.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.980 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.121.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.988 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.988 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.118.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.988 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.991 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.124.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.995 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.126.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.996 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.127.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.996 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.125.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.996 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.996 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+11:29:07.996 [info] Application ssl started at :nonode@nohost
+11:29:07.997 [info] Application xp_mint started at :nonode@nohost
+11:29:07.998 [info] Application xp_nimble_options started at :nonode@nohost
+11:29:08.002 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.133.0> (Supervisor.Default) started
+Pid: #PID<0.134.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:08.002 [info] Application xp_nimble_pool started at :nonode@nohost
+11:29:08.005 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.138.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.005 [info] Application xp_telemetry started at :nonode@nohost
+11:29:08.005 [info] Application xp_finch started at :nonode@nohost
+11:29:08.028 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.144.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.028 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.143.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:08.029 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.145.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:08.029 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.146.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.029 [info] Child XPReq.Finch of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.029 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.147.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:08.029 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.141.0> (Supervisor.Default) started
+Pid: #PID<0.148.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.029 [info] Application xp_req started at :nonode@nohost
+11:29:08.030 [info] Application burrito started at :nonode@nohost
+11:29:08.032 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.152.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.032 [info] Application xp_briefly started at :nonode@nohost
+11:29:08.033 [info] Application xp_schematic started at :nonode@nohost
+11:29:08.033 [info] Application xp_typed_struct started at :nonode@nohost
+11:29:08.033 [info] Application xp_gen_lsp started at :nonode@nohost
+11:29:08.041 [info] Child XPSnowflake.Generator of Supervisor #PID<0.155.0> (Supervisor.Default) started
+Pid: #PID<0.156.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.041 [info] Application xp_snowflake started at :nonode@nohost
+11:29:08.041 [info] Application xp_sourceror started at :nonode@nohost
+11:29:08.041 [info] Application xp_spitfire started at :nonode@nohost
+11:29:08.041 [info] Application xp_forge started at :nonode@nohost
+11:29:08.041 [info] Application xp_logger_file_backend started at :nonode@nohost
+11:29:08.045 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.160.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+11:29:08.045 [info] Application runtime_tools started at :nonode@nohost
+11:29:08.045 [info] Application et started at :nonode@nohost
+11:29:08.045 [info] Application observer started at :nonode@nohost
+11:29:08.045 [info] Application xp_path_glob started at :nonode@nohost
+11:29:08.059 [info] Starting NodePortMapper on nonode@nohost
+11:29:08.059 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.060 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.061 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:08.061 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:08.063 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.063 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.169.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+11:29:08.064 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.064 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.171.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.065 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+11:29:08.069 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.172.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+11:29:08.069 [info] Application xp_expert started at :nonode@nohost
+11:29:08.076 [error] GenServer XPExpert.Buffer terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Last message: {:"$gen_cast", {:incoming, {:error, {:no_translation, :unicode, :latin1}}}}
+State: %{awaiting_response: %{}, comm_data: nil, comm: XPGenLSP.Communication.Stdio, lsp: #PID<0.172.0>}
+11:29:08.081 [error] Process XPExpert.Buffer (#PID<0.170.0>) terminating
+** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+    :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+    (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+    (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+    (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+    (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+    (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+    (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Initial Call: XPGenLSP.Buffer.init/1
+Ancestors: [XPExpert.Supervisor, #PID<0.162.0>]
+Message Queue Length: 0
+Messages: []
+Links: [#PID<0.163.0>, #PID<0.173.0>]
+Dictionary: []
+Trapping Exits: false
+Status: :running
+Heap Size: 17731
+Stack Size: 29
+Reductions: 8604
+Neighbours:
+    #PID<0.173.0>
+        Initial Call: anonymous fn/0 in XPGenLSP.Buffer.read/2
+        Current Call: :io.execute_request/3
+        Ancestors: [#PID<0.170.0>, XPExpert.Supervisor, #PID<0.162.0>]
+        Message Queue Length: 0
+        Links: [#PID<0.170.0>]
+        Trapping Exits: false
+        Status: :waiting
+        Heap Size: 987
+        Stack Size: 34
+        Reductions: 662
+        Current Stacktrace:
+            (stdlib 6.2.2.1) io.erl:1637: :io.execute_request/3
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:59: XPGenLSP.Communication.Stdio.read_header/1
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/communication/stdio.ex:38: XPGenLSP.Communication.Stdio.read/2
+            (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:139: anonymous fn/4 in XPGenLSP.Buffer.read/2
+            (elixir 1.17.3) lib/stream.ex:1689: Stream.do_resource/5
+            (elixir 1.17.3) lib/enum.ex:4423: Enum.reverse/1
+            (elixir 1.17.3) lib/enum.ex:3748: Enum.to_list/1
+            (elixir 1.17.3) lib/task/supervised.ex:101: Task.Supervised.invoke_mfa/2
+11:29:08.082 [error] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor terminated
+** (exit) an exception was raised:
+    ** (ArgumentError) errors were found at the given arguments:
+
+  * 1st argument: not an iodata term
+
+        :erlang.iolist_to_binary({:error, {:no_translation, :unicode, :latin1}})
+        (xp_jason 1.4.4) lib/jason.ex:69: XPJason.decode/2
+        (xp_jason 1.4.4) lib/jason.ex:90: XPJason.decode!/2
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:87: anonymous fn/3 in XPGenLSP.Buffer.handle_cast/2
+        (xp_telemetry 1.3.0) /home/runner/work/expert/expert/apps/expert/deps/telemetry/src/telemetry.erl:324: :xp_telemetry.span/3
+        (xp_gen_lsp 0.11.3) lib/gen_lsp/buffer.ex:85: XPGenLSP.Buffer.handle_cast/2
+        (stdlib 6.2.2.1) gen_server.erl:2371: :gen_server.try_handle_cast/3
+        (stdlib 6.2.2.1) gen_server.erl:2433: :gen_server.handle_msg/6
+Pid: #PID<0.170.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+11:29:08.083 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.174.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker

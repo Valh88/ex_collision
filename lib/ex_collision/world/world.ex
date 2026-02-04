@@ -151,6 +151,37 @@ defmodule ExCollision.World do
     end
   end
 
+  def update_coordinates(world, body_id, x, y) do
+    case get_body(world, body_id) do
+      nil ->
+        {:error, :not_found}
+
+      body ->
+        if body.static do
+          {:ok, world, body}
+        else
+          new_aabb =
+            AABB.new(
+              x,
+              y,
+              x + body.aabb.width,
+              y + body.aabb.height
+            )
+
+          if collides?(world, new_aabb, body_id) do
+            collided_ids = bodies_intersecting_aabb(world, new_aabb, body_id)
+            hit_static = collides_static?(world.static_bodies, new_aabb)
+            world = run_collision_callback(world, body, body_id, collided_ids, hit_static)
+            {:collision, world, body}
+          else
+            new_body = %{body | aabb: new_aabb}
+            world = put_in(world.bodies[body_id], new_body)
+            {:ok, world, new_body}
+          end
+        end
+    end
+  end
+
   defp run_collision_callback(world, body, body_id, collided_ids, hit_static) do
     case body.on_collision do
       nil ->

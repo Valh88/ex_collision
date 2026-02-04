@@ -128,7 +128,7 @@ defimpl ExCollision.Protocols.Collidable, for: ExCollision.World.Body do
 end
 
 defimpl Inspect, for: ExCollision.World.Body do
-  def inspect(%{id: id, aabb: aabb, static: static, velocity: vel}, _opts) do
-    "Body(#{inspect(id)}, #{inspect(aabb)}, static: #{static}, velocity: #{inspect(vel)})"
+  def inspect(%{id: id, aabb: aabb, static: static, velocity: vel, on_collision: on_collision}, _opts) do
+    "Body(#{inspect(id)}, #{inspect(aabb)}, static: #{static}, velocity: #{inspect(vel)}), on_collision: #{inspect(on_collision)}"
   end
 end
