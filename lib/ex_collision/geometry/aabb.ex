@@ -38,6 +38,18 @@ defmodule ExCollision.Geometry.AABB do
     Vec2.new((min_x + max_x) / 2, (min_y + max_y) / 2)
   end
 
+  def from_center(center_x, center_y, width, height) do
+    half_width = width / 2
+    half_height = height / 2
+
+    new(
+      center_x - half_width,
+      center_y - half_height,
+      center_x + half_width,
+      center_y + half_height
+    )
+  end
+
   def contains_point?(%__MODULE__{min_x: mx, min_y: my, max_x: xx, max_y: xy}, px, py) do
     px >= mx and px <= xx and py >= my and py <= xy
   end

@@ -164,7 +164,9 @@ defmodule ExCollision.World do
             AABB.from_xywh(
               x,
               y,
+              # TODO: width and height should be taken from the body
               40,
+              # TODO: width and height should be taken from the body
               40
             )
 
