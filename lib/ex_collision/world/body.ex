@@ -54,6 +54,10 @@ defmodule ExCollision.World.Body do
     new(id, AABB.from_xywh(x, y, w, h), opts)
   end
 
+  def from_center(id, center_x, center_y, width, height, opts \\ []) do
+    new(id, AABB.from_center(center_x, center_y, width, height), opts)
+  end
+
   @doc "Задать колбек при коллизии: (world, body_id, [id тел], hit_static) -> world"
   def set_on_collision(%__MODULE__{} = body, callback)
       when is_function(callback, 4) or is_nil(callback) do
