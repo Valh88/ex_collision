@@ -163,7 +163,7 @@ defmodule ExCollision.World do
           width = Keyword.get(opts, :width, 60)
           height = Keyword.get(opts, :height, 60)
           new_aabb =
-            AABB.from_xywh(
+            AABB.from_center(
               x,
               y,
               # TODO: width and height should be taken from the body
