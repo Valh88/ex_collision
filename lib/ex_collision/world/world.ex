@@ -165,9 +165,9 @@ defmodule ExCollision.World do
               x,
               y,
               # TODO: width and height should be taken from the body
-              40,
+              60,
               # TODO: width and height should be taken from the body
-              40
+              60
             )
 
           if collides?(world, new_aabb, body_id) do
