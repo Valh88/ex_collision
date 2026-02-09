@@ -151,7 +151,7 @@ defmodule ExCollision.World do
     end
   end
 
-  def update_coordinates(world, body_id, x, y) do
+  def update_coordinates(world, body_id, x, y, opts \\ []) do
     case get_body(world, body_id) do
       nil ->
         {:error, :not_found}
@@ -160,14 +160,16 @@ defmodule ExCollision.World do
         if body.static do
           {:ok, world, body}
         else
+          width = Keyword.get(opts, :width, 60)
+          height = Keyword.get(opts, :height, 60)
           new_aabb =
             AABB.from_xywh(
               x,
               y,
               # TODO: width and height should be taken from the body
-              60,
+              width,
               # TODO: width and height should be taken from the body
-              60
+              height
             )
 
           if collides?(world, new_aabb, body_id) do
