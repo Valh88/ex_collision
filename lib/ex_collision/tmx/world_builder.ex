@@ -79,8 +79,7 @@ defmodule ExCollision.TMX.WorldBuilder do
   defp object_to_aabb(%MapObject{width: w, height: h, x: x, y: y})
        when is_number(w) and is_number(h) and w > 0 and h > 0 do
     # Tiled: y — нижний край для orthogonal
-    # координаты от левого верхнего угла from_xywh если нужно  то от центра from_center
-    AABB.from_center(x, y, w, h)
+    AABB.from_xywh(x, y, w, h)
   end
 
   defp object_to_aabb(%MapObject{polygon_points: [_ | _] = points}) do
