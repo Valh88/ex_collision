@@ -143,7 +143,7 @@ defmodule ExCollision.World do
             world = run_collision_callback(world, body, body_id, collided_ids, hit_static)
             {:collision, world, body}
           else
-            new_body = %{body | aabb: new_aabb}
+            new_body = %{body | aabb: new_aabb, previous_aabb: body.aabb}
             world = put_in(world.bodies[body_id], new_body)
             {:ok, world, new_body}
           end
