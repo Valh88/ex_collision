@@ -1,7 +1,7 @@
 defmodule ExCollision.Geometry.AABB do
   @moduledoc """
-  Axis-Aligned Bounding Box. Используется для коллизий и тел в мире.
-  Реализует протокол `ExCollision.Protocols.Collidable`.
+  Axis-Aligned Bounding Box. Used for collisions and bodies in the world.
+  Implements `ExCollision.Protocols.Collidable` protocol.
   """
   defstruct [:min_x, :min_y, :max_x, :max_y]
 

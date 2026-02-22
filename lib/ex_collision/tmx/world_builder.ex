@@ -1,7 +1,7 @@
 defmodule ExCollision.TMX.WorldBuilder do
   @moduledoc """
-  Строит мир коллизий из TMX карты: добавляет статические AABB из тайлового слоя
-  и из objectgroup. Реализует единый интерфейс через протокол `Collidable` для объектов.
+  Builds collision world from TMX map: adds static AABBs from tile layer
+  and objectgroup. Provides unified interface via `Collidable` protocol for objects.
   """
   alias ExCollision.TMX.{Map, TileLayer, ObjectGroup, MapObject}
   alias ExCollision.Geometry.AABB
@@ -9,12 +9,12 @@ defmodule ExCollision.TMX.WorldBuilder do
   alias ExCollision.World.Body
 
   @doc """
-  Создаёт мир и заполняет статическими коллизиями из TMX карты.
+  Creates world and fills it with static collisions from TMX map.
 
-  Опции:
-  - `:collision_layer` — имя слоя тайлов для коллизий (например "Walls"). По умолчанию первый слой с именем "Walls" или первый tile layer.
-  - `:collision_object_groups` — список имён objectgroup для коллизий (например ["Collision"]). По умолчанию все objectgroup.
-  - `:tile_width`, `:tile_height` — размер тайла в пикселях (из карты, если не задано).
+  Options:
+  - `:collision_layer` — name of tile layer for collisions (e.g. "Walls"). Default: first layer named "Walls" or first tile layer.
+  - `:collision_object_groups` — list of objectgroup names for collisions (e.g. ["Collision"]). Default: all objectgroups.
+  - `:tile_width`, `:tile_height` — tile size in pixels (from map if not set).
   """
   @spec from_tmx(Map.t(), keyword()) :: World.t()
   def from_tmx(%Map{} = tmx_map, opts \\ []) do
@@ -78,12 +78,12 @@ defmodule ExCollision.TMX.WorldBuilder do
 
   defp object_to_aabb(%MapObject{width: w, height: h, x: x, y: y})
        when is_number(w) and is_number(h) and w > 0 and h > 0 do
-    # Tiled: y — нижний край для orthogonal
+    # Tiled: y is bottom edge for orthogonal
     AABB.from_xywh(x, y, w, h)
   end
 
   defp object_to_aabb(%MapObject{polygon_points: [_ | _] = points}) do
-    # Ограничивающий прямоугольник полигона
+    # Bounding box of polygon
     {xs, ys} = Enum.unzip(points)
     min_x = Enum.min(xs)
     max_x = Enum.max(xs)
@@ -108,8 +108,8 @@ defmodule ExCollision.TMX.WorldBuilder do
   end
 
   @doc """
-  Создаёт динамическое тело (Body) в позиции MapObject — для спавна игрока/сущности по точке TMX.
-  MapObject должен иметь width и height (прямоугольник). Опции: :velocity, :data.
+  Creates dynamic body (Body) at MapObject position — for spawning player/entity from TMX point.
+  MapObject must have width and height (rectangle). Options: :velocity, :data.
   """
   @spec body_from_map_object(MapObject.t(), term(), keyword()) :: Body.t() | nil
   def body_from_map_object(%MapObject{width: w, height: h, x: x, y: y}, id, opts \\ [])

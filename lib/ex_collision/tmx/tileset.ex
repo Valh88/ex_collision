@@ -1,6 +1,6 @@
 defmodule ExCollision.TMX.Tileset do
   @moduledoc """
-  Набор тайлов из TMX.
+  TMX tileset.
   """
   defstruct [:first_gid, :name, :tile_width, :tile_height, :columns, :tile_count]
 

@@ -1,19 +1,19 @@
 defmodule ExCollision.Pathfinding.AStar do
   @moduledoc """
-  Поиск пути A* по тайлмапу.
-  Использует протокол `ExCollision.Protocols.TileSource` для проходимости.
-  Координаты — индексы тайлов (column, row) или {x, y} в тайлах.
+  A* pathfinding over tilemap.
+  Uses `ExCollision.Protocols.TileSource` for walkability.
+  Coordinates are tile indices (column, row) or {x, y} in tiles.
   """
   alias ExCollision.Protocols.TileSource
 
   @doc """
-  Находит путь от start до goal по тайлмапу.
+  Finds path from start to goal over the tilemap.
 
-  start, goal — {tile_x, tile_y} (индексы тайлов).
-  Возвращает {:ok, [ {x, y}, ... ]} или {:error, :unreachable}.
+  start, goal — {tile_x, tile_y} (tile indices).
+  Returns {:ok, [ {x, y}, ... ]} or {:error, :unreachable}.
 
-  Опции:
-  - `:allow_diagonal` — разрешить ход по диагонали (8 направлений). По умолчанию `false` (только 4 направления).
+  Options:
+  - `:allow_diagonal` — allow diagonal movement (8 directions). Default `false` (4 directions only).
   """
   @spec find_path(TileSource.t(), {integer(), integer()}, {integer(), integer()}, keyword()) ::
           {:ok, [{integer(), integer()}]} | {:error, :unreachable}
@@ -82,10 +82,10 @@ defmodule ExCollision.Pathfinding.AStar do
     {gx, gy} = from_index(goal_idx, width)
 
     if allow_diagonal do
-      # Евклидово расстояние (допустимая эвристика для 8 направлений)
+      # Euclidean distance (admissible heuristic for 8 directions)
       :math.sqrt((x - gx) * (x - gx) + (y - gy) * (y - gy))
     else
-      # Манхэттенское (для 4 направлений)
+      # Manhattan (for 4 directions)
       abs(x - gx) + abs(y - gy)
     end
   end
@@ -113,7 +113,7 @@ defmodule ExCollision.Pathfinding.AStar do
           path = reconstruct_path(came_from, current)
           {:found, path}
         else
-          # Добавляем current в closed set
+          # Add current to closed set
           closed = Map.put(closed, current, true)
           g_current = Map.get(g, current, :infinity)
           neighbors = neighbors_with_cost(current, width, height, allow_diagonal)
@@ -121,7 +121,7 @@ defmodule ExCollision.Pathfinding.AStar do
           {open, g, came_from} =
             Enum.reduce(neighbors, {open, g, came_from}, fn {n_idx, cost},
                                                             {open_acc, g_acc, cf_acc} ->
-              # Пропускаем уже посещённые узлы
+              # Skip already visited nodes
               if Map.has_key?(closed, n_idx) do
                 {open_acc, g_acc, cf_acc}
               else
@@ -149,7 +149,7 @@ defmodule ExCollision.Pathfinding.AStar do
     end
   end
 
-  # Соседи: только 4 направления (вверх, вниз, влево, вправо), стоимость 1
+  # Neighbors: 4 directions only (up, down, left, right), cost 1
   defp neighbors_with_cost(idx, width, height, false) do
     {x, y} = from_index(idx, width)
 
@@ -158,7 +158,7 @@ defmodule ExCollision.Pathfinding.AStar do
     |> Enum.map(fn {nx, ny} -> {ny * width + nx, 1} end)
   end
 
-  # Соседи: 8 направлений (включая диагонали), диагональ — стоимость sqrt(2)
+  # Neighbors: 8 directions (including diagonals), diagonal cost sqrt(2)
   defp neighbors_with_cost(idx, width, height, true) do
     {x, y} = from_index(idx, width)
     diagonal_cost = :math.sqrt(2)
@@ -189,7 +189,7 @@ defmodule ExCollision.Pathfinding.AStar do
   end
 
   @doc """
-  Проверяет, проходима ли точка на тайлмапе.
+  Checks whether a point on the tilemap is walkable.
   """
   def walkable_at?(source, {x, y}) do
     width = TileSource.width(source)

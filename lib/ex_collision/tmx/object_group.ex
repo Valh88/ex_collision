@@ -1,6 +1,6 @@
 defmodule ExCollision.TMX.ObjectGroup do
   @moduledoc """
-  Слой объектов TMX (прямоугольники, полигоны и т.д.).
+  TMX object layer (rectangles, polygons, etc.).
   """
   defstruct [:id, :name, :visible, :objects]
 

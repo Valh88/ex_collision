@@ -1,6 +1,6 @@
 defmodule ExCollision.TMX.Map do
   @moduledoc """
-  Структура карты Tiled TMX.
+  Tiled TMX map structure.
   """
   @enforce_keys [:width, :height, :tile_width, :tile_height]
   defstruct [
@@ -17,7 +17,7 @@ defmodule ExCollision.TMX.Map do
     tile_height: 16
   ]
 
-  @doc "Возвращает слой по имени (tile layer или object group)"
+  @doc "Returns layer by name (tile layer or object group)"
   def layer_by_name(%__MODULE__{layers: layers}, name) when is_binary(name) do
     name_str = name
 

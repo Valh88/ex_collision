@@ -1,10 +1,10 @@
 defmodule ExCollision.TMX.MapObject do
   @moduledoc """
-  Статический объект на карте TMX (прямоугольник, полигон, полилиния).
-  Используется для коллизий и разметки из objectgroup.
+  Static object on TMX map (rectangle, polygon, polyline).
+  Used for collisions and markup from objectgroup.
 
-  Игрок и движущиеся сущности — это не MapObject, а `ExCollision.World.Body`
-  в мире коллизий. MapObject описывает статику; Body — динамику (velocity, интерполяция).
+  Player and moving entities are not MapObject but `ExCollision.World.Body`
+  in the collision world. MapObject describes static; Body — dynamic (velocity, interpolation).
   """
   defstruct [
     :id,

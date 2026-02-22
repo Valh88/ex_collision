@@ -1,7 +1,7 @@
 defmodule ExCollision.TMX.Parser do
   @moduledoc """
-  Парсер файлов Tiled TMX (XML).
-  Поддерживает tile layers (CSV/base64), objectgroup, tilesets.
+  Parser for Tiled TMX files (XML).
+  Supports tile layers (CSV/base64), objectgroup, tilesets.
   """
 
   import SweetXml
@@ -9,9 +9,9 @@ defmodule ExCollision.TMX.Parser do
   alias ExCollision.TMX.{Map, Tileset, TileLayer, ObjectGroup, MapObject}
 
   @doc """
-  Парсит TMX файл по пути или содержимому XML.
+  Parses TMX file by path or XML content.
 
-  ## Примеры
+  ## Examples
 
       iex> ExCollision.TMX.Parser.parse!("data/Dun.tmx")
       %ExCollision.TMX.Map{...}
@@ -74,7 +74,7 @@ defmodule ExCollision.TMX.Parser do
   end
 
   defp parse_layers(map_el) do
-    # Сохраняем порядок слоёв: сначала все layer, потом objectgroup (XPath order)
+    # Preserve layer order: all layer first, then objectgroup (XPath order)
     layers_el = xpath(map_el, ~x"./layer"l)
     groups_el = xpath(map_el, ~x"./objectgroup"l)
 

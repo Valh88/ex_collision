@@ -1,6 +1,6 @@
 defmodule ExCollision.TMX.TileLayer do
   @moduledoc """
-  Тайловый слой TMX (сетка тайлов с данными).
+  TMX tile layer (tile grid with data).
   """
   defstruct [:id, :name, :width, :height, :opacity, :visible, :data]
 

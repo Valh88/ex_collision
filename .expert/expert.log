@@ -3315,3 +3315,2637 @@ Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
 Restart: :permanent
 Shutdown: 5000
 Type: :worker
+
+11:43:18.647 [info] Application logger started at :nonode@nohost
+
+11:43:18.649 [info] Application xp_mime started at :nonode@nohost
+
+11:43:18.650 [info] Application xp_hpax started at :nonode@nohost
+
+11:43:18.650 [info] Application crypto started at :nonode@nohost
+
+11:43:18.650 [info] Application asn1 started at :nonode@nohost
+
+11:43:18.650 [info] Application public_key started at :nonode@nohost
+
+11:43:18.659 [debug] Child :ssl_handler of Supervisor :logger_sup started
+Pid: #PID<0.104.0>
+Start Call: :logger_olp.start_link(:logger_std_h_ssl_handler, :logger_h_common, %{id: :ssl_handler, module: :logger_std_h, config: %{type: :standard_io, filesync_repeat_interval: :no_repeat}, level: :debug, filter_default: :stop, filters: [], formatter: {:ssl_logger, %{}}}, %{})
+Restart: :temporary
+Shutdown: 2000
+Type: :worker
+
+11:43:18.673 [info] Child :ssl_pem_cache of Supervisor :ssl_admin_sup started
+Pid: #PID<0.108.0>
+Start Call: :ssl_pem_cache.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+
+11:43:18.682 [info] Child :ssl_manager of Supervisor :ssl_admin_sup started
+Pid: #PID<0.109.0>
+Start Call: :ssl_manager.start_link([])
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+
+11:43:18.684 [info] Child :tls_client_ticket_store of Supervisor :ssl_admin_sup started
+Pid: #PID<0.110.0>
+Start Call: :tls_client_ticket_store.start_link(1000, 7200)
+Restart: :permanent
+Shutdown: 4000
+Type: :worker
+
+11:43:18.684 [info] Child :ssl_admin_sup of Supervisor :ssl_sup started
+Pid: #PID<0.107.0>
+Start Call: :ssl_admin_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.694 [info] Child :tls_connection_sup of Supervisor :tls_sup started
+Pid: #PID<0.113.0>
+Start Call: :tls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.700 [info] Child :ssl_listen_tracker_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.115.0>
+Start Call: :ssl_listen_tracker_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.701 [info] Child :tls_server_session_ticket of Supervisor :tls_server_sup started
+Pid: #PID<0.116.0>
+Start Call: :tls_server_session_ticket_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.707 [info] Child :ssl_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.117.0>
+Start Call: :ssl_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.708 [info] Child :ssl_upgrade_server_session_cache_sup of Supervisor :tls_server_sup started
+Pid: #PID<0.118.0>
+Start Call: :ssl_upgrade_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.709 [info] Child :tls_server_sup of Supervisor :tls_sup started
+Pid: #PID<0.114.0>
+Start Call: :tls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.709 [info] Child :tls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.112.0>
+Start Call: :tls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.713 [info] Child :dtls_connection_sup of Supervisor :dtls_sup started
+Pid: #PID<0.120.0>
+Start Call: :dtls_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.716 [info] Child :dtls_listener_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.122.0>
+Start Call: :dtls_listener_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.718 [info] Child :dtls_server_session_cache_sup of Supervisor :dtls_server_sup started
+Pid: #PID<0.123.0>
+Start Call: :dtls_server_session_cache_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.718 [info] Child :dtls_server_sup of Supervisor :dtls_sup started
+Pid: #PID<0.121.0>
+Start Call: :dtls_server_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.718 [info] Child :dtls_sup of Supervisor :ssl_connection_sup started
+Pid: #PID<0.119.0>
+Start Call: :dtls_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.718 [info] Child :ssl_connection_sup of Supervisor :ssl_sup started
+Pid: #PID<0.111.0>
+Start Call: :ssl_connection_sup.start_link()
+Restart: :permanent
+Shutdown: 4000
+Type: :supervisor
+
+11:43:18.718 [info] Application ssl started at :nonode@nohost
+
+11:43:18.723 [info] Application xp_mint started at :nonode@nohost
+
+11:43:18.723 [info] Application xp_nimble_options started at :nonode@nohost
+
+11:43:18.739 [info] Child XPNimblePool.TaskSupervisor of Supervisor #PID<0.129.0> (Supervisor.Default) started
+Pid: #PID<0.130.0>
+Start Call: Task.Supervisor.start_link([name: XPNimblePool.TaskSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+
+11:43:18.739 [info] Application xp_nimble_pool started at :nonode@nohost
+
+11:43:18.751 [info] Child :telemetry_handler_table of Supervisor :telemetry_sup started
+Pid: #PID<0.134.0>
+Start Call: :telemetry_handler_table.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.751 [info] Application xp_telemetry started at :nonode@nohost
+
+11:43:18.751 [info] Application xp_finch started at :nonode@nohost
+
+11:43:18.807 [info] Child XPReq.Finch.PIDPartition0 of Supervisor XPReq.Finch started
+Pid: #PID<0.140.0>
+Start Call: Registry.Partition.start_link(XPReq.Finch.PIDPartition0, {:duplicate, XPReq.Finch, 0, 1, XPReq.Finch.KeyPartition0, XPReq.Finch.PIDPartition0, [], false})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.807 [info] Child XPReq.Finch of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.139.0>
+Start Call: Registry.start_link([keys: :duplicate, name: XPReq.Finch, meta: [config: %{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}}]])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+
+11:43:18.807 [info] Child XPReq.Finch.PoolSupervisor of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.141.0>
+Start Call: DynamicSupervisor.start_link([name: XPReq.Finch.PoolSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+
+11:43:18.807 [info] Child XPFinch.PoolManager of Supervisor XPReq.Finch.Supervisor started
+Pid: #PID<0.142.0>
+Start Call: XPFinch.PoolManager.start_link(%{pools: %{}, registry_name: XPReq.Finch, supervisor_name: XPReq.Finch.PoolSupervisor, manager_name: XPReq.Finch.PoolManager, default_pool_config: %{count: 1, size: 50, mod: XPFinch.HTTP1.Pool, conn_opts: [protocols: [:http1], transport_opts: [keepalive: true, nodelay: true, timeout: 5000], ssl_key_log_file_device: nil], pool_max_idle_time: :infinity, conn_max_idle_time: :infinity, start_pool_metrics?: false}})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.808 [info] Child XPReq.Finch of Supervisor #PID<0.137.0> (Supervisor.Default) started
+Pid: #PID<0.138.0>
+Start Call: XPFinch.start_link([name: XPReq.Finch, pools: %{default: [protocols: [:http1]]}])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.808 [info] Child XPReq.FinchSupervisor of Supervisor #PID<0.137.0> (Supervisor.Default) started
+Pid: #PID<0.143.0>
+Start Call: DynamicSupervisor.start_link([strategy: :one_for_one, name: XPReq.FinchSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+
+11:43:18.808 [info] Child XPReq.Test.Ownership of Supervisor #PID<0.137.0> (Supervisor.Default) started
+Pid: #PID<0.144.0>
+Start Call: XPReq.Test.Ownership.start_link([name: XPReq.Test.Ownership])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.808 [info] Application xp_req started at :nonode@nohost
+
+11:43:18.808 [info] Application burrito started at :nonode@nohost
+
+11:43:18.816 [info] Child XPBriefly.Entry of Supervisor XPBriefly.Supervisor started
+Pid: #PID<0.148.0>
+Start Call: XPBriefly.Entry.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.816 [info] Application xp_briefly started at :nonode@nohost
+
+11:43:18.816 [info] Application xp_schematic started at :nonode@nohost
+
+11:43:18.816 [info] Application xp_typed_struct started at :nonode@nohost
+
+11:43:18.816 [info] Application xp_gen_lsp started at :nonode@nohost
+
+11:43:18.860 [info] Child XPSnowflake.Generator of Supervisor #PID<0.151.0> (Supervisor.Default) started
+Pid: #PID<0.152.0>
+Start Call: XPSnowflake.Generator.start_link(0, 1023)
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.860 [info] Application xp_snowflake started at :nonode@nohost
+
+11:43:18.860 [info] Application xp_sourceror started at :nonode@nohost
+
+11:43:18.860 [info] Application xp_spitfire started at :nonode@nohost
+
+11:43:18.860 [info] Application xp_forge started at :nonode@nohost
+
+11:43:18.878 [info] Child :ttb_autostart of Supervisor :runtime_tools_sup started
+Pid: #PID<0.156.0>
+Start Call: :ttb_autostart.start_link()
+Restart: :temporary
+Shutdown: 3000
+Type: :worker
+
+11:43:18.879 [info] Application runtime_tools started at :nonode@nohost
+
+11:43:18.879 [info] Application et started at :nonode@nohost
+
+11:43:18.879 [info] Application observer started at :nonode@nohost
+
+11:43:18.879 [info] Application xp_path_glob started at :nonode@nohost
+
+11:43:18.911 [info] Starting NodePortMapper on nonode@nohost
+
+11:43:18.911 [info] Child XPForge.NodePortMapper of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.160.0>
+Start Call: XPForge.NodePortMapper.start_link([])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.915 [info] Child XPForge.Document.Store of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.161.0>
+Start Call: XPForge.Document.Store.start_link([derive: [analysis: &XPForge.Ast.analyze/1]])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.915 [info] Child XPExpert.ProjectSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.162.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.ProjectSupervisor, strategy: :one_for_one])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+
+11:43:18.915 [info] Child XPExpert.DynamicSupervisor of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.163.0>
+Start Call: DynamicSupervisor.start_link([name: XPExpert.DynamicSupervisor])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+
+11:43:18.919 [info] Child XPGenLSP.Assigns of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.164.0>
+Start Call: XPGenLSP.Assigns.start_link([name: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.920 [info] Child :expert_task_queue of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.165.0>
+Start Call: Task.Supervisor.start_link([name: :expert_task_queue])
+Restart: :permanent
+Shutdown: :infinity
+Type: :supervisor
+
+11:43:18.926 [info] Child XPGenLSP.Buffer of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.166.0>
+Start Call: XPGenLSP.Buffer.start_link([name: XPExpert.Buffer])
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.928 [info] Child XPExpert.ActiveProjects of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.167.0>
+Start Call: XPExpert.ActiveProjects.start_link()
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:18.928 [debug] [name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns]
+
+11:43:18.946 [info] Child XPExpert of Supervisor XPExpert.Supervisor started
+Pid: #PID<0.168.0>
+Start Call: XPExpert.start_link([name: XPExpert, buffer: XPExpert.Buffer, task_supervisor: :expert_task_queue, dynamic_supervisor: XPExpert.DynamicSupervisor, assigns: XPExpert.Assigns])
+Restart: :permanent
+Shutdown: 500
+Type: :worker
+
+11:43:18.947 [info] Application xp_expert started at :nonode@nohost
+
+11:43:19.312 [debug] handled request client -> server initialize in 332ms
+
+11:43:19.325 [info] Server initialized, registering capabilities
+
+11:43:19.326 [debug] sent request server -> client client/registerCapability
+
+11:43:19.348 [debug] handled notification client -> server initialized in 29ms
+
+11:43:19.348 [info] [Project file:///d%3A/projects/elixir/ex_collision] Starting project
+
+11:43:19.351 [debug] sent notification server -> client window/logMessage
+
+11:43:19.384 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision.ex
+
+11:43:19.384 [debug] handled notification client -> server textDocument/didOpen in 36ms
+
+11:43:19.387 [info] Child {XPExpert.EngineSupervisor, "ex_collision"} of Supervisor :"ex_collision::supervisor" started
+Pid: #PID<0.175.0>
+Start Call: XPExpert.EngineSupervisor.start_link(%XPForge.Project{root_uri: "file:///d%3A/projects/elixir/ex_collision", mix_exs_uri: "file:///d%3A/projects/elixir/ex_collision/mix.exs", mix_project?: true, mix_env: nil, mix_target: nil, env_variables: %{}, project_module: nil, entropy: 47682})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:43:19.393 [debug] sent request server -> client window/workDoneProgress/create
+
+11:43:19.400 [debug] sent notification server -> client window/logMessage
+
+11:43:19.415 [debug] handled request client -> server textDocument/documentSymbol in 31ms
+
+11:43:19.635 [debug] sent notification server -> client $/progress
+
+11:43:19.643 [debug] sent notification server -> client window/logMessage
+
+11:43:19.643 [debug] handled request client -> server textDocument/documentSymbol in 1ms
+
+11:43:19.683 [info] Child XPForge.EPMD of Supervisor :net_sup started
+Pid: #PID<0.179.0>
+Start Call: XPForge.EPMD.start_link()
+Restart: :permanent
+Shutdown: 2000
+Type: :worker
+
+11:43:19.685 [info] Child :auth of Supervisor :net_sup started
+Pid: #PID<0.180.0>
+Start Call: :auth.start_link()
+Restart: :permanent
+Shutdown: 2000
+Type: :worker
+
+11:43:21.282 [debug] sent notification server -> client window/logMessage
+
+11:43:21.283 [debug] handled request client -> server textDocument/documentSymbol in 1ms
+
+11:43:21.560 [debug] sent notification server -> client window/logMessage
+
+11:43:21.560 [debug] handled request client -> server textDocument/documentSymbol in 922µs
+
+11:43:21.793 [info] Child :net_kernel of Supervisor :net_sup started
+Pid: #PID<0.181.0>
+Start Call: :net_kernel.start_link(%{name: :"expert-manager-ex_collision-47682@127.0.0.1", supervisor: :net_sup_dynamic, net_tickintensity: 4, net_ticktime: 60, name_domain: :longnames, clean_halt: false})
+Restart: :permanent
+Shutdown: 2000
+Type: :worker
+
+11:43:21.794 [debug] Child :net_sup_dynamic of Supervisor :kernel_sup started
+Pid: #PID<0.178.0>
+Start Call: :erl_distribution.start_link(%{name: :"expert-manager-ex_collision-47682@127.0.0.1", supervisor: :net_sup_dynamic, net_tickintensity: 4, net_ticktime: 60, name_domain: :longnames, clean_halt: false})
+Restart: :permanent
+Shutdown: 1000
+Type: :supervisor
+
+11:43:21.862 [info] [Project file:///d%3A/projects/elixir/ex_collision] Using path: C:\Users\simpl\AppData\Local\.burrito\expert_erts-15.2.7_0.1.0-rc.0-d3eb92c\erts-15.2.7\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.9.9-hotspot\bin;D:\Program Files (x86)\Embarcadero\Studio\23.0\bin;D:\Program Files (x86)\Embarcadero\Studio\23.0\bin64;C:\Program Files (x86)\Embarcadero\Studio\23.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl;C:\Program Files (x86)\Embarcadero\Studio\23.0\bin64;C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\Win64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;c:\Users\simpl\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files\dotnet\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;%ANDROID_HOME%\platform-tools;C:\HaxeToolkit\haxe;C:\HaxeToolkit\neko;D:\Program Files (x86)\Embarcadero\Pas2js\pas2js-win64-x86_64-3.2.0\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\simpl\scoop\apps\dotnet-sdk\current;C:\Users\simpl\scoop\apps\dotnet8-sdk\current;C:\Users\simpl\scoop\apps\dotnet9-sdk\current;C:\Users\simpl\scoop\apps\elixir\current\bin;C:\Users\simpl\scoop\apps\haxe\current;C:\Users\simpl\scoop\apps\mingw-winlibs\current\bin;C:\Users\simpl\scoop\apps\luarocks\current\rocks\bin;C:\Users\simpl\scoop\shims;C:\Program Files\Eclipse Adoptium\jdk-17.0.9.9-hotspot\bin;D:\Program Files (x86)\Embarcadero\Studio\23.0\bin;D:\Program Files (x86)\Embarcadero\Studio\23.0\bin64;C:\Program Files (x86)\Embarcadero\Studio\23.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl;C:\Program Files (x86)\Embarcadero\Studio\23.0\bin64;C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\Win64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;c:\Users\simpl\AppData\Local\Programs\cursor\resources\app\bin;C:\Program Files\dotnet\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;%ANDROID_HOME%\platform-tools;C:\HaxeToolkit\haxe;C:\HaxeToolkit\neko;D:\Program Files (x86)\Embarcadero\Pas2js\pas2js-win64-x86_64-3.2.0\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\simpl\ceramic-windows\tools\;C:\Users\simpl\AppData\Local\Programs\cursor\resources\app\bin;C:\fpcupdeluxe\lazarus;
+
+11:43:21.862 [debug] sent notification server -> client window/logMessage
+
+11:43:21.863 [info] [Project file:///d%3A/projects/elixir/ex_collision] Found elixir executable at c:/Users/simpl/scoop/apps/elixir/current/bin/elixir.bat
+
+11:43:21.863 [debug] sent notification server -> client window/logMessage
+
+11:43:21.863 [info] [Project file:///d%3A/projects/elixir/ex_collision] Found erl executable at c:/Users/simpl/scoop/shims/erl.exe
+
+11:43:21.863 [debug] sent notification server -> client window/logMessage
+
+11:43:21.863 [info] [Project file:///d%3A/projects/elixir/ex_collision] Finding or building engine
+
+11:43:21.863 [debug] sent notification server -> client window/logMessage
+
+11:43:21.863 [debug] sent request server -> client window/workDoneProgress/create
+
+11:43:21.867 [debug] sent notification server -> client $/progress
+
+11:43:23.678 [debug] sent notification server -> client window/logMessage
+
+11:43:23.691 [debug] handled request client -> server textDocument/codeLens in 30ms
+
+11:43:25.157 [debug] Building engine: * Getting elixir_sense (https://github.com/elixir-lsp/elixir_sense.git - e3ddc403554050221a2fd19a10a896fa7525bc02)
+
+
+11:43:27.474 [debug] Building engine: remote: Enumerating objects: 17501, done.        
+
+
+11:43:27.474 [debug] Building engine: remote: Counting objects:   0% (1/3067)        
+
+11:43:27.474 [debug] Building engine: remote: Counting objects:   1% (31/3067)        
+
+11:43:27.474 [debug] Building engine: remote: Counting objects:   2% (62/3067)        
+
+11:43:27.474 [debug] Building engine: remote: Counting objects:   3% (93/3067)        
+
+11:43:27.475 [debug] Building engine: remote: Counting objects:   4% (123/3067)        
+
+11:43:27.475 [debug] Building engine: remote: Counting objects:   5% (154/3067)        
+
+11:43:27.475 [debug] Building engine: remote: Counting objects:   6% (185/3067)        
+
+11:43:27.475 [debug] Building engine: remote: Counting objects:   7% (215/3067)        
+
+11:43:27.475 [debug] Building engine: remote: Counting objects:   8% (246/3067)        
+
+11:43:27.476 [debug] Building engine: remote: Counting objects:   9% (277/3067)        
+
+11:43:27.476 [debug] Building engine: remote: Counting objects:  10% (307/3067)        
+
+11:43:27.476 [debug] Building engine: remote: Counting objects:  11% (338/3067)        
+
+11:43:27.476 [debug] Building engine: remote: Counting objects:  12% (369/3067)        
+
+11:43:27.476 [debug] Building engine: remote: Counting objects:  13% (399/3067)        
+
+11:43:27.476 [debug] Building engine: remote: Counting objects:  14% (430/3067)        
+
+11:43:27.476 [debug] Building engine: remote: Counting objects:  15% (461/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  16% (491/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  17% (522/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  18% (553/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  19% (583/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  20% (614/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  21% (645/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  22% (675/3067)        
+
+11:43:27.477 [debug] Building engine: remote: Counting objects:  23% (706/3067)        
+
+11:43:27.478 [debug] Building engine: remote: Counting objects:  24% (737/3067)        
+
+11:43:27.478 [debug] Building engine: remote: Counting objects:  25% (767/3067)        
+
+11:43:27.478 [debug] Building engine: remote: Counting objects:  26% (798/3067)        
+
+11:43:27.478 [debug] Building engine: remote: Counting objects:  27% (829/3067)        
+
+11:43:27.479 [debug] Building engine: remote: Counting objects:  28% (859/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  29% (890/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  30% (921/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  31% (951/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  32% (982/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  33% (1013/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  34% (1043/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  35% (1074/3067)        
+
+11:43:27.480 [debug] Building engine: remote: Counting objects:  36% (1105/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  37% (1135/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  38% (1166/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  39% (1197/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  40% (1227/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  41% (1258/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  42% (1289/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  43% (1319/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  44% (1350/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  45% (1381/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  46% (1411/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  47% (1442/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  48% (1473/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  49% (1503/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  50% (1534/3067)        
+
+11:43:27.481 [debug] Building engine: remote: Counting objects:  51% (1565/3067)        
+
+11:43:27.482 [debug] Building engine: remote: Counting objects:  52% (1595/3067)        
+
+11:43:27.482 [debug] Building engine: remote: Counting objects:  53% (1626/3067)        
+
+11:43:27.482 [debug] Building engine: remote: Counting objects:  54% (1657/3067)        
+
+11:43:27.482 [debug] Building engine: remote: Counting objects:  55% (1687/3067)        
+
+11:43:27.482 [debug] Building engine: remote: Counting objects:  56% (1718/3067)        
+
+11:43:27.482 [debug] Building engine: remote: Counting objects:  57% (1749/3067)        
+
+11:43:27.482 [debug] Building engine: remote: Counting objects:  58% (1779/3067)        
+
+11:43:27.483 [debug] Building engine: remote: Counting objects:  59% (1810/3067)        
+
+11:43:27.483 [debug] Building engine: remote: Counting objects:  60% (1841/3067)        
+
+11:43:27.483 [debug] Building engine: remote: Counting objects:  61% (1871/3067)        
+
+11:43:27.483 [debug] Building engine: remote: Counting objects:  62% (1902/3067)        
+
+11:43:27.483 [debug] Building engine: remote: Counting objects:  63% (1933/3067)        
+
+11:43:27.483 [debug] Building engine: remote: Counting objects:  64% (1963/3067)        
+
+11:43:27.484 [debug] Building engine: remote: Counting objects:  65% (1994/3067)        
+
+11:43:27.484 [debug] Building engine: remote: Counting objects:  66% (2025/3067)        
+
+11:43:27.484 [debug] Building engine: remote: Counting objects:  67% (2055/3067)        
+
+11:43:27.570 [debug] Building engine: remote: Counting objects:  68% (2086/3067)        
+
+11:43:27.574 [debug] Building engine: remote: Counting objects:  69% (2117/3067)        
+
+11:43:27.575 [debug] Building engine: remote: Counting objects:  70% (2147/3067)        
+
+11:43:27.575 [debug] Building engine: remote: Counting objects:  71% (2178/3067)        
+
+11:43:27.576 [debug] Building engine: remote: Counting objects:  72% (2209/3067)        
+
+11:43:27.576 [debug] Building engine: remote: Counting objects:  73% (2239/3067)        
+
+11:43:27.576 [debug] Building engine: remote: Counting objects:  74% (2270/3067)        
+
+11:43:27.576 [debug] Building engine: remote: Counting objects:  75% (2301/3067)        
+
+11:43:27.576 [debug] Building engine: remote: Counting objects:  76% (2331/3067)        
+
+11:43:27.576 [debug] Building engine: remote: Counting objects:  77% (2362/3067)        
+
+11:43:27.576 [debug] Building engine: remote: Counting objects:  78% (2393/3067)        
+
+11:43:27.577 [debug] Building engine: remote: Counting objects:  79% (2423/3067)        
+
+11:43:27.577 [debug] Building engine: remote: Counting objects:  80% (2454/3067)        
+
+11:43:27.577 [debug] Building engine: remote: Counting objects:  81% (2485/3067)        
+
+11:43:27.577 [debug] Building engine: remote: Counting objects:  82% (2515/3067)        
+
+11:43:27.577 [debug] Building engine: remote: Counting objects:  83% (2546/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  84% (2577/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  85% (2607/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  86% (2638/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  87% (2669/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  88% (2699/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  89% (2730/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  90% (2761/3067)        
+
+11:43:27.578 [debug] Building engine: remote: Counting objects:  91% (2791/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  92% (2822/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  93% (2853/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  94% (2883/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  95% (2914/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  96% (2945/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  97% (2975/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  98% (3006/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects:  99% (3037/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects: 100% (3067/3067)        
+
+11:43:27.579 [debug] Building engine: remote: Counting objects: 100% (3067/3067), done.        
+
+
+11:43:27.579 [debug] Building engine: remote: Compressing objects:   0% (1/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   1% (8/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   2% (16/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   3% (24/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   4% (31/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   5% (39/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   6% (47/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   7% (55/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   8% (62/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:   9% (70/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:  10% (78/774)        
+
+11:43:27.580 [debug] Building engine: remote: Compressing objects:  11% (86/774)        
+
+11:43:27.581 [debug] Building engine: remote: Compressing objects:  12% (93/774)        
+
+11:43:27.581 [debug] Building engine: remote: Compressing objects:  13% (101/774)        
+
+11:43:27.581 [debug] Building engine: remote: Compressing objects:  14% (109/774)        
+
+11:43:27.585 [debug] Building engine: remote: Compressing objects:  15% (117/774)        
+
+11:43:27.585 [debug] Building engine: remote: Compressing objects:  16% (124/774)        
+
+11:43:27.585 [debug] Building engine: remote: Compressing objects:  17% (132/774)        
+
+11:43:27.585 [debug] Building engine: remote: Compressing objects:  18% (140/774)        
+
+11:43:27.585 [debug] Building engine: remote: Compressing objects:  19% (148/774)        
+
+11:43:27.587 [debug] Building engine: remote: Compressing objects:  20% (155/774)        
+
+11:43:27.590 [debug] Building engine: remote: Compressing objects:  21% (163/774)        
+
+11:43:27.590 [debug] Building engine: remote: Compressing objects:  22% (171/774)        
+
+11:43:27.590 [debug] Building engine: remote: Compressing objects:  23% (179/774)        
+
+11:43:27.590 [debug] Building engine: remote: Compressing objects:  24% (186/774)        
+
+11:43:27.591 [debug] Building engine: remote: Compressing objects:  25% (194/774)        
+
+11:43:27.591 [debug] Building engine: remote: Compressing objects:  26% (202/774)        
+
+11:43:27.591 [debug] Building engine: remote: Compressing objects:  27% (209/774)        
+
+11:43:27.591 [debug] Building engine: remote: Compressing objects:  28% (217/774)        
+
+11:43:27.592 [debug] Building engine: remote: Compressing objects:  29% (225/774)        
+
+11:43:27.592 [debug] Building engine: remote: Compressing objects:  30% (233/774)        
+
+11:43:27.592 [debug] Building engine: remote: Compressing objects:  31% (240/774)        
+
+11:43:27.592 [debug] Building engine: remote: Compressing objects:  32% (248/774)        
+
+11:43:27.593 [debug] Building engine: remote: Compressing objects:  33% (256/774)        
+
+11:43:27.593 [debug] Building engine: remote: Compressing objects:  34% (264/774)        
+
+11:43:27.593 [debug] Building engine: remote: Compressing objects:  35% (271/774)        
+
+11:43:27.593 [debug] Building engine: remote: Compressing objects:  36% (279/774)        
+
+11:43:27.594 [debug] Building engine: remote: Compressing objects:  37% (287/774)        
+
+11:43:27.594 [debug] Building engine: remote: Compressing objects:  38% (295/774)        
+
+11:43:27.595 [debug] Building engine: remote: Compressing objects:  39% (302/774)        
+
+11:43:27.597 [debug] Building engine: remote: Compressing objects:  40% (310/774)        
+
+11:43:27.597 [debug] Building engine: remote: Compressing objects:  41% (318/774)        
+
+11:43:27.597 [debug] Building engine: remote: Compressing objects:  42% (326/774)        
+
+11:43:27.598 [debug] Building engine: remote: Compressing objects:  43% (333/774)        
+
+11:43:27.598 [debug] Building engine: remote: Compressing objects:  44% (341/774)        
+
+11:43:27.599 [debug] Building engine: remote: Compressing objects:  45% (349/774)        
+
+11:43:27.599 [debug] Building engine: remote: Compressing objects:  46% (357/774)        
+
+11:43:27.599 [debug] Building engine: remote: Compressing objects:  47% (364/774)        
+
+11:43:27.599 [debug] Building engine: remote: Compressing objects:  48% (372/774)        
+
+11:43:27.599 [debug] Building engine: remote: Compressing objects:  49% (380/774)        
+
+11:43:27.599 [debug] Building engine: remote: Compressing objects:  50% (387/774)        
+
+11:43:27.600 [debug] Building engine: remote: Compressing objects:  51% (395/774)        
+
+11:43:27.600 [debug] Building engine: remote: Compressing objects:  52% (403/774)        
+
+11:43:27.600 [debug] Building engine: remote: Compressing objects:  53% (411/774)        
+
+11:43:27.600 [debug] Building engine: remote: Compressing objects:  54% (418/774)        
+
+11:43:27.600 [debug] Building engine: remote: Compressing objects:  55% (426/774)        
+
+11:43:27.601 [debug] Building engine: remote: Compressing objects:  56% (434/774)        
+
+11:43:27.601 [debug] Building engine: remote: Compressing objects:  57% (442/774)        
+
+11:43:27.601 [debug] Building engine: remote: Compressing objects:  58% (449/774)        
+
+11:43:27.601 [debug] Building engine: remote: Compressing objects:  59% (457/774)        
+
+11:43:27.601 [debug] Building engine: remote: Compressing objects:  60% (465/774)        
+
+11:43:27.601 [debug] Building engine: remote: Compressing objects:  61% (473/774)        
+
+11:43:27.602 [debug] Building engine: remote: Compressing objects:  62% (480/774)        
+
+11:43:27.602 [debug] Building engine: remote: Compressing objects:  63% (488/774)        
+
+11:43:27.602 [debug] Building engine: remote: Compressing objects:  64% (496/774)        
+
+11:43:27.602 [debug] Building engine: remote: Compressing objects:  65% (504/774)        
+
+11:43:27.602 [debug] Building engine: remote: Compressing objects:  66% (511/774)        
+
+11:43:27.603 [debug] Building engine: remote: Compressing objects:  67% (519/774)        
+
+11:43:27.607 [debug] Building engine: remote: Compressing objects:  68% (527/774)        
+
+11:43:27.607 [debug] Building engine: remote: Compressing objects:  69% (535/774)        
+
+11:43:27.608 [debug] Building engine: remote: Compressing objects:  70% (542/774)        
+
+11:43:27.609 [debug] Building engine: remote: Compressing objects:  71% (550/774)        
+
+11:43:27.609 [debug] Building engine: remote: Compressing objects:  72% (558/774)        
+
+11:43:27.609 [debug] Building engine: remote: Compressing objects:  73% (566/774)        
+
+11:43:27.609 [debug] Building engine: remote: Compressing objects:  74% (573/774)        
+
+11:43:27.610 [debug] Building engine: remote: Compressing objects:  75% (581/774)        
+
+11:43:27.610 [debug] Building engine: remote: Compressing objects:  76% (589/774)        
+
+11:43:27.610 [debug] Building engine: remote: Compressing objects:  77% (596/774)        
+
+11:43:27.610 [debug] Building engine: remote: Compressing objects:  78% (604/774)        
+
+11:43:27.610 [debug] Building engine: remote: Compressing objects:  79% (612/774)        
+
+11:43:27.610 [debug] Building engine: remote: Compressing objects:  80% (620/774)        
+
+11:43:27.611 [debug] Building engine: remote: Compressing objects:  81% (627/774)        
+
+11:43:27.611 [debug] Building engine: remote: Compressing objects:  82% (635/774)        
+
+11:43:27.611 [debug] Building engine: remote: Compressing objects:  83% (643/774)        
+
+11:43:27.611 [debug] Building engine: remote: Compressing objects:  84% (651/774)        
+
+11:43:27.611 [debug] Building engine: remote: Compressing objects:  85% (658/774)        
+
+11:43:27.612 [debug] Building engine: remote: Compressing objects:  86% (666/774)        
+
+11:43:27.612 [debug] Building engine: remote: Compressing objects:  87% (674/774)        
+
+11:43:27.613 [debug] Building engine: remote: Compressing objects:  88% (682/774)        
+
+11:43:27.614 [debug] Building engine: remote: Compressing objects:  89% (689/774)        
+
+11:43:27.614 [debug] Building engine: remote: Compressing objects:  90% (697/774)        
+
+11:43:27.615 [debug] Building engine: remote: Compressing objects:  91% (705/774)        
+
+11:43:27.616 [debug] Building engine: remote: Compressing objects:  92% (713/774)        
+
+11:43:27.616 [debug] Building engine: remote: Compressing objects:  93% (720/774)        
+
+11:43:27.616 [debug] Building engine: remote: Compressing objects:  94% (728/774)        
+
+11:43:27.616 [debug] Building engine: remote: Compressing objects:  95% (736/774)        
+
+11:43:27.616 [debug] Building engine: remote: Compressing objects:  96% (744/774)        
+
+11:43:27.617 [debug] Building engine: remote: Compressing objects:  97% (751/774)        
+
+11:43:27.617 [debug] Building engine: remote: Compressing objects:  98% (759/774)        
+
+11:43:27.617 [debug] Building engine: remote: Compressing objects:  99% (767/774)        
+
+11:43:27.617 [debug] Building engine: remote: Compressing objects: 100% (774/774)        
+
+11:43:27.617 [debug] Building engine: remote: Compressing objects: 100% (774/774), done.        
+
+
+11:43:29.471 [debug] Building engine: remote: Total 17501 (delta 2428), reused 2557 (delta 2285), pack-reused 14434 (from 4)        
+
+
+11:43:36.320 [debug] Building engine: Resolving Hex dependencies...
+
+
+11:43:36.726 [debug] Building engine: Resolution completed in 0.355s
+
+
+11:43:36.734 [debug] Building engine: Unchanged:
+
+
+11:43:36.737 [debug] Building engine:   briefly 0.5.1
+
+
+11:43:36.738 [debug] Building engine:   bunt 1.0.0
+
+
+11:43:36.739 [debug] Building engine:   credo 1.7.15
+
+
+11:43:36.739 [debug] Building engine:   deps_nix 2.4.0
+
+
+11:43:36.739 [debug] Building engine:   file_system 1.1.1
+
+
+11:43:36.739 [debug] Building engine:   gen_lsp 0.11.3
+
+
+11:43:36.739 [debug] Building engine:   hpax 1.0.3
+
+
+11:43:36.739 [debug] Building engine:   jason 1.4.4
+
+
+11:43:36.739 [debug] Building engine:   mint 1.7.1
+
+
+11:43:36.739 [debug] Building engine:   nimble_options 1.1.1
+
+
+11:43:36.740 [debug] Building engine:   nimble_parsec 1.2.3
+
+
+11:43:36.740 [debug] Building engine:   patch 0.15.0
+
+
+11:43:36.740 [debug] Building engine:   path_glob 0.2.0
+
+
+11:43:36.740 [debug] Building engine:   refactorex 0.1.52
+
+
+11:43:36.740 [debug] Building engine:   schematic 0.2.1
+
+
+11:43:36.741 [debug] Building engine:   snowflake 1.0.4
+
+
+11:43:36.741 [debug] Building engine:   sourceror 1.10.1
+
+
+11:43:36.741 [debug] Building engine:   spitfire 0.3.7
+
+
+11:43:36.741 [debug] Building engine:   telemetry 1.3.0
+
+
+11:43:36.741 [debug] Building engine:   typed_struct 0.3.0
+
+
+11:43:36.781 [debug] Building engine: * Getting deps_nix (Hex package)
+
+
+11:43:37.599 [debug] Building engine: * Getting credo (Hex package)
+
+
+11:43:46.694 [debug] Building engine: * Getting gen_lsp (Hex package)
+
+
+11:43:55.272 [debug] Building engine: * Getting patch (Hex package)
+
+
+11:43:56.444 [debug] Building engine: * Getting path_glob (Hex package)
+
+
+11:43:56.615 [debug] Building engine: * Getting sourceror (Hex package)
+
+
+11:43:57.040 [debug] Building engine: * Getting refactorex (Hex package)
+
+
+11:43:57.966 [debug] Building engine: * Getting nimble_parsec (Hex package)
+
+
+11:43:58.258 [debug] Building engine: * Getting jason (Hex package)
+
+
+11:43:58.516 [debug] Building engine: * Getting nimble_options (Hex package)
+
+
+11:43:58.685 [debug] Building engine: * Getting schematic (Hex package)
+
+
+11:43:58.878 [debug] Building engine: * Getting typed_struct (Hex package)
+
+
+11:43:59.077 [debug] Building engine: * Getting telemetry (Hex package)
+
+
+11:43:59.513 [debug] Building engine: * Getting briefly (Hex package)
+
+
+11:43:59.791 [debug] Building engine: * Getting snowflake (Hex package)
+
+
+11:43:59.994 [debug] Building engine: * Getting spitfire (Hex package)
+
+
+11:44:00.281 [debug] Building engine: * Getting bunt (Hex package)
+
+
+11:44:00.334 [debug] Building engine: * Getting file_system (Hex package)
+
+
+11:44:00.815 [debug] Building engine: * Getting mint (Hex package)
+
+
+11:44:01.587 [debug] Building engine: * Getting hpax (Hex package)
+
+
+11:44:01.924 [debug] Building engine: You have added/upgraded packages you could sponsor, run `mix hex.sponsor` to learn more
+
+
+11:44:03.304 [debug] Building engine: ==> sourceror
+
+
+11:44:03.307 [debug] Building engine: Compiling 12 files (.ex)
+
+
+11:44:05.730 [debug] Building engine: Generated sourceror app
+
+
+11:44:05.818 [debug] Building engine: ==> typed_struct
+
+
+11:44:05.818 [debug] Building engine: Compiling 2 files (.ex)
+
+
+11:44:06.070 [debug] Building engine: Generated typed_struct app
+
+
+11:44:06.172 [debug] Building engine: ==> refactorex
+
+
+11:44:06.172 [debug] Building engine: Compiling 47 files (.ex)
+
+
+11:44:07.907 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/alias/sort_nested_aliases.ex:2: Refactorex.Refactor.Alias.SortNestedAliases.visit/4
+
+
+
+11:44:07.907 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/constant/inline_constant.ex:2: Refactorex.Refactor.Constant.InlineConstant.visit/4
+
+
+
+11:44:07.907 [debug] Building engine:     warning: the following clause will never match:
+
+        false
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(:skip or true)
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/alias/merge_aliases.ex:2: Refactorex.Refactor.Alias.MergeAliases.visit/4
+
+
+
+11:44:07.907 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/function/collapse_anonymous_function.ex:2: Refactorex.Refactor.Function.CollapseAnonymousFunction.visit/4
+
+
+
+11:44:07.907 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/function/expand_anonymous_function.ex:2: Refactorex.Refactor.Function.ExpandAnonymousFunction.visit/4
+
+
+
+11:44:07.911 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/alias/extract_alias.ex:2: Refactorex.Refactor.Alias.ExtractAlias.visit/4
+
+
+
+11:44:07.914 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/alias/inline_alias.ex:2: Refactorex.Refactor.Alias.InlineAlias.visit/4
+
+
+
+11:44:07.914 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/function/use_regular_syntax.ex:2: Refactorex.Refactor.Function.UseRegularSyntax.visit/4
+
+
+
+11:44:07.915 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/guard/extract_guard.ex:2: Refactorex.Refactor.Guard.ExtractGuard.visit/4
+
+
+
+11:44:07.918 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/guard/rename_guard.ex:2: Refactorex.Refactor.Guard.RenameGuard.visit/4
+
+
+
+11:44:07.922 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/if_else/use_regular_syntax.ex:2: Refactorex.Refactor.IfElse.UseRegularSyntax.visit/4
+
+
+
+11:44:07.924 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/guard/inline_guard.ex:2: Refactorex.Refactor.Guard.InlineGuard.visit/4
+
+
+
+11:44:07.925 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/variable/extract_variable.ex:2: Refactorex.Refactor.Variable.ExtractVariable.visit/4
+
+
+
+11:44:07.930 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/pipeline/remove_io_inspect.ex:2: Refactorex.Refactor.Pipeline.RemoveIOInspect.visit/4
+
+
+
+11:44:07.931 [debug] Building engine:     warning: the following clause will never match:
+
+        false
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(:skip or true)
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/variable/underscore_not_used.ex:2: Refactorex.Refactor.Variable.UnderscoreNotUsed.visit/4
+
+
+
+11:44:07.932 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/variable/inline_variable.ex:2: Refactorex.Refactor.Variable.InlineVariable.visit/4
+
+
+
+11:44:07.932 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/variable/rename_variable.ex:2: Refactorex.Refactor.Variable.RenameVariable.visit/4
+
+
+
+11:44:07.936 [debug] Building engine:     warning: the following clause will never match:
+
+        :skip
+
+    because it attempts to match on the result of:
+
+        can_refactor?(zipper, selection_or_line)
+
+    which has type:
+
+        dynamic(boolean())
+
+    typing violation found at:
+    │
+  2 │   use Refactorex.Refactor,
+    │   ~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ lib/refactorex/refactor/pipeline/remove_pipe.ex:2: Refactorex.Refactor.Pipeline.RemovePipe.visit/4
+
+
+
+11:44:08.131 [debug] Building engine: Generated refactorex app
+
+
+11:44:08.452 [debug] Building engine: ==> file_system
+
+
+11:44:08.453 [debug] Building engine: Compiling 7 files (.ex)
+
+
+11:44:09.237 [debug] Building engine: Generated file_system app
+
+
+11:44:09.365 [debug] Building engine: ==> spitfire
+
+
+11:44:09.365 [debug] Building engine: Compiling 2 files (.erl)
+
+
+11:44:11.572 [debug] Building engine: Compiling 5 files (.ex)
+
+
+11:44:16.412 [debug] Building engine: Generated spitfire app
+
+
+11:44:16.557 [debug] Building engine: ==> nimble_options
+
+
+11:44:16.557 [debug] Building engine: Compiling 3 files (.ex)
+
+
+11:44:17.746 [debug] Building engine: Generated nimble_options app
+
+
+11:44:17.831 [debug] Building engine: ==> snowflake
+
+
+11:44:17.832 [debug] Building engine: Compiling 4 files (.ex)
+
+
+11:44:17.899 [debug] Building engine:     warning: use Bitwise is deprecated. import Bitwise instead
+    │
+ 10 │   use Bitwise
+    │   ~~~~~~~~~~~
+    │
+    └─ lib/snowflake/util.ex:10: Snowflake.Util (module)
+
+
+
+11:44:18.248 [debug] Building engine:     warning: Supervisor.Spec.worker/2 is deprecated. Use the new child specifications outlined in the Supervisor module instead
+    │
+ 11 │       worker(Snowflake.Generator, [Snowflake.Helper.epoch(), Snowflake.Helper.machine_id()])
+    │       ~
+    │
+    └─ lib/snowflake.ex:11:7: Snowflake.start/2
+
+
+
+11:44:18.357 [debug] Building engine: Generated snowflake app
+
+
+11:44:18.458 [debug] Building engine: ==> nimble_parsec
+
+
+11:44:18.458 [debug] Building engine: Compiling 4 files (.ex)
+
+
+11:44:18.564 [debug] Building engine: warning: _.._ inside match is deprecated, you must always match on the step: _.._//var or _.._//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:925: NimbleParsec.Compiler.newline_allowed?/1
+
+
+
+11:44:18.564 [debug] Building engine: warning: _.._ inside match is deprecated, you must always match on the step: _.._//var or _.._//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:934: NimbleParsec.Compiler.newline_forbidden?/1
+
+
+
+11:44:18.573 [debug] Building engine: warning: min..max inside match is deprecated, you must always match on the step: min..max//var or min..max//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:1041: NimbleParsec.Compiler.bin_range_to_guard/2
+
+
+
+11:44:18.573 [debug] Building engine: warning: min..max inside match is deprecated, you must always match on the step: min..max//var or min..max//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:1044: NimbleParsec.Compiler.bin_range_to_guard/2
+
+
+
+11:44:18.573 [debug] Building engine: warning: min..min inside match is deprecated, you must always match on the step: min..min//var or min..min//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:1047: NimbleParsec.Compiler.bin_range_to_guard/2
+
+
+
+11:44:18.575 [debug] Building engine: warning: min..max inside match is deprecated, you must always match on the step: min..max//var or min..max//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:1053: NimbleParsec.Compiler.bin_range_to_guard/2
+
+
+
+11:44:18.576 [debug] Building engine: warning: min..max inside match is deprecated, you must always match on the step: min..max//var or min..max//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:1056: NimbleParsec.Compiler.bin_range_to_guard/2
+
+
+
+11:44:18.576 [debug] Building engine: warning: min..min inside match is deprecated, you must always match on the step: min..min//var or min..min//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:1059: NimbleParsec.Compiler.bin_range_to_guard/2
+
+
+
+11:44:18.576 [debug] Building engine: warning: min..max inside match is deprecated, you must always match on the step: min..max//var or min..max//_ if you want to ignore it
+  lib/nimble_parsec/compiler.ex:1067: NimbleParsec.Compiler.inspect_bin_range/2
+
+
+
+11:44:18.657 [debug] Building engine: warning: min..max inside match is deprecated, you must always match on the step: min..max//var or min..max//_ if you want to ignore it
+  lib/nimble_parsec.ex:423: NimbleParsec.exclude_bin_segment?/2
+
+
+
+11:44:18.657 [debug] Building engine: warning: _.._ inside match is deprecated, you must always match on the step: _.._//var or _.._//_ if you want to ignore it
+  lib/nimble_parsec.ex:427: NimbleParsec.int_random/1
+
+
+
+11:44:18.740 [debug] Building engine: warning: _.._ inside match is deprecated, you must always match on the step: _.._//var or _.._//_ if you want to ignore it
+  lib/nimble_parsec.ex:1796: NimbleParsec.split_range!/2
+
+
+
+11:44:18.741 [debug] Building engine: warning: _.._ inside match is deprecated, you must always match on the step: _.._//var or _.._//_ if you want to ignore it
+  lib/nimble_parsec.ex:1798: NimbleParsec.split_range!/2
+
+
+
+11:44:19.510 [debug] Building engine: Generated nimble_parsec app
+
+
+11:44:19.573 [debug] Building engine: ==> bunt
+
+
+11:44:19.573 [debug] Building engine: Compiling 2 files (.ex)
+
+
+11:44:21.011 [debug] Building engine: Generated bunt app
+
+
+11:44:24.162 [debug] Building engine: ==> mix_install
+
+
+11:44:24.162 [debug] Building engine: ===> Analyzing applications...
+
+
+11:44:24.601 [debug] Building engine: ===> Compiling telemetry
+
+
+11:44:26.516 [debug] Building engine: ==> briefly
+
+
+11:44:26.516 [debug] Building engine: Compiling 5 files (.ex)
+
+
+11:44:27.232 [debug] Building engine: Generated briefly app
+
+
+11:44:27.341 [debug] Building engine: ==> jason
+
+
+11:44:27.341 [debug] Building engine: Compiling 10 files (.ex)
+
+
+11:44:31.971 [debug] Building engine: Generated jason app
+
+
+11:44:32.118 [debug] Building engine: ==> schematic
+
+
+11:44:32.118 [debug] Building engine: Compiling 2 files (.ex)
+
+
+11:44:32.656 [debug] Building engine: Generated schematic app
+
+
+11:44:32.724 [debug] Building engine: ==> hpax
+
+
+11:44:32.724 [debug] Building engine: Compiling 4 files (.ex)
+
+
+11:44:33.938 [debug] Building engine: Generated hpax app
+
+
+11:44:34.089 [debug] Building engine: ==> mint
+
+
+11:44:34.089 [debug] Building engine: Compiling 1 file (.erl)
+
+
+11:44:34.323 [debug] Building engine: Compiling 20 files (.ex)
+
+
+11:44:38.783 [debug] Building engine: Generated mint app
+
+
+11:44:39.583 [debug] Building engine: ==> elixir_sense
+
+
+11:44:39.583 [debug] Building engine: Compiling 1 file (.yrl)
+
+
+11:44:47.025 [debug] Building engine: Compiling 5 files (.erl)
+
+
+11:45:04.646 [debug] Building engine: Compiling 88 files (.ex)
+
+
+11:45:14.002 [debug] Building engine:     warning: :elixir_def.local_for/4 is undefined or private. Did you mean:
+
+        * local_for/5
+
+    │
+  9 │           :elixir_def.local_for(e.module, name, arity, kinds)
+    │                       ~
+    │
+    └─ lib/elixir_sense/core/normalized/macro/env.ex:9:23: ElixirSense.Core.Normalized.Macro.Env.expand_import/5
+
+
+
+11:45:14.038 [debug] Building engine:      warning: a struct for ElixirSense.Core.State.ModFunInfo is expected on struct update:
+
+         %ElixirSense.Core.State.ModFunInfo{info | target: {target, as}}
+
+     but got type:
+
+         dynamic()
+
+     where "info" was given the type:
+
+         # type: dynamic()
+         # from: lib/elixir_sense/core/compiler/state.ex:435:10
+         info
+
+     when defining the variable "info", you must also pattern match on "%ElixirSense.Core.State.ModFunInfo{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 441 │     %ModFunInfo{
+     │     ~
+     │
+     └─ lib/elixir_sense/core/compiler/state.ex:441:5: ElixirSense.Core.Compiler.State.process_option/4
+
+
+
+11:45:14.041 [debug] Building engine:      warning: a struct for ElixirSense.Core.State.ModFunInfo is expected on struct update:
+
+         %ElixirSense.Core.State.ModFunInfo{
+           info
+           | overridable: {true, module},
+             meta: Map.put(info.meta, :overridable, true)
+         }
+
+     but got type:
+
+         dynamic()
+
+     where "info" was given the type:
+
+         # type: dynamic()
+         # from: lib/elixir_sense/core/compiler/state.ex:447:31
+         info
+
+     when defining the variable "info", you must also pattern match on "%ElixirSense.Core.State.ModFunInfo{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 448 │     %ModFunInfo{
+     │     ~
+     │
+     └─ lib/elixir_sense/core/compiler/state.ex:448:5: ElixirSense.Core.Compiler.State.process_option/4
+
+
+
+11:45:14.047 [debug] Building engine:      warning: a struct for ElixirSense.Core.Compiler.State is expected on struct update:
+
+         %ElixirSense.Core.Compiler.State{
+           state
+           | scope_ids: tl(state.scope_ids),
+             vars_info: tl(state.vars_info),
+             vars_info_per_scope_id: update_vars_info_per_scope_id(state),
+             vars: vars
+         }
+
+     but got type:
+
+         dynamic()
+
+     where "state" was given the type:
+
+         # type: dynamic()
+         # from: lib/elixir_sense/core/compiler/state.ex:681:11
+         state = maybe_move_vars_to_outer_scope(state)
+
+     when defining the variable "state", you must also pattern match on "%ElixirSense.Core.Compiler.State{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 683 │     state = %__MODULE__{
+     │             ~
+     │
+     └─ lib/elixir_sense/core/compiler/state.ex:683:13: ElixirSense.Core.Compiler.State.remove_vars_scope/3
+
+
+
+11:45:14.061 [debug] Building engine:     warning: :elixir_rewrite.match_rewrite/5 is undefined or private. Did you mean:
+
+        * match/6
+
+    │
+ 16 │       :elixir_rewrite.match_rewrite(receiver, dot_meta, right, meta, e_args)
+    │                       ~
+    │
+    └─ lib/elixir_sense/core/compiler/rewrite.ex:16:23: ElixirSense.Core.Compiler.Rewrite.do_rewrite/7
+
+
+
+11:45:14.061 [debug] Building engine:      warning: a struct for ElixirSense.Core.State.VarInfo is expected on struct update:
+
+         %ElixirSense.Core.State.VarInfo{
+           info
+           | positions: Enum.uniq(info.positions ++ [extract_position(meta)])
+         }
+
+     but got type:
+
+         dynamic()
+
+     where "info" was given the type:
+
+         # type: dynamic()
+         # from: lib/elixir_sense/core/compiler/state.ex:945:7
+         info
+
+     when defining the variable "info", you must also pattern match on "%ElixirSense.Core.State.VarInfo{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 946 │         info = %VarInfo{
+     │                ~
+     │
+     └─ lib/elixir_sense/core/compiler/state.ex:946:16: ElixirSense.Core.Compiler.State.add_var_read/2
+
+
+
+11:45:14.071 [debug] Building engine:     warning: :elixir_rewrite.guard_rewrite/6 is undefined or private. Did you mean:
+
+        * guard/6
+
+    │
+ 30 │         :elixir_rewrite.guard_rewrite(receiver, dot_meta, right, meta, e_args, "guard")
+    │                         ~
+    │
+    └─ lib/elixir_sense/core/compiler/rewrite.ex:30:25: ElixirSense.Core.Compiler.Rewrite.do_rewrite/7
+
+
+
+11:45:14.083 [debug] Building engine:      warning: a struct for ElixirSense.Core.State.AttributeInfo is expected on struct update:
+
+         %ElixirSense.Core.State.AttributeInfo{
+           existing
+           | type: type,
+             positions: Enum.sort(Enum.uniq(existing.positions ++ [position]))
+         }
+
+     but got type:
+
+         dynamic()
+
+     where "existing" was given the type:
+
+         # type: dynamic()
+         # from: lib/elixir_sense/core/compiler/state.ex:988:39
+         existing
+
+     when defining the variable "existing", you must also pattern match on "%ElixirSense.Core.State.AttributeInfo{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 991 │             %AttributeInfo{
+     │             ~
+     │
+     └─ lib/elixir_sense/core/compiler/state.ex:991:13: ElixirSense.Core.Compiler.State.add_attribute/7
+
+
+
+11:45:14.109 [debug] Building engine:      warning: a struct for ElixirSense.Core.Compiler.Quote is expected on struct update:
+
+         %ElixirSense.Core.Compiler.Quote{q | unquote: false}
+
+     but got type:
+
+         dynamic()
+
+     where "q" was given the type:
+
+         # type: dynamic()
+         # from: lib/elixir_sense/core/compiler/quote.ex:155:40
+         q
+
+     when defining the variable "q", you must also pattern match on "%ElixirSense.Core.Compiler.Quote{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 156 │     {t_arg, state} = do_quote(arg, %__MODULE__{q | unquote: false}, state)
+     │                                    ~
+     │
+     └─ lib/elixir_sense/core/compiler/quote.ex:156:36: ElixirSense.Core.Compiler.Quote.do_quote/3
+
+
+
+11:45:14.111 [debug] Building engine:      warning: a struct for ElixirSense.Core.Compiler.Quote is expected on struct update:
+
+         %ElixirSense.Core.Compiler.Quote{q | unquote: false}
+
+     but got type:
+
+         dynamic()
+
+     where "q" was given the type:
+
+         # type: dynamic()
+         # from: lib/elixir_sense/core/compiler/quote.ex:170:46
+         q
+
+     when defining the variable "q", you must also pattern match on "%ElixirSense.Core.Compiler.Quote{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 172 │     {t_arg, state} = do_quote(arg, %__MODULE__{q | unquote: false}, state)
+     │                                    ~
+     │
+     └─ lib/elixir_sense/core/compiler/quote.ex:172:36: ElixirSense.Core.Compiler.Quote.do_quote/3
+
+
+
+11:45:14.225 [debug] Building engine: Generated elixir_sense app
+
+
+11:45:14.648 [debug] Building engine: ==> patch
+
+
+11:45:14.652 [debug] Building engine: Compiling 43 files (.ex)
+
+
+11:45:16.960 [debug] Building engine: Generated patch app
+
+
+11:45:17.322 [debug] Building engine: ==> deps_nix
+
+
+11:45:17.322 [debug] Building engine: Compiling 9 files (.ex)
+
+
+11:45:18.418 [debug] Building engine:      warning: a struct for DepsNix.Options is expected on struct update:
+
+         %DepsNix.Options{
+           default
+           | envs:
+               for {:env, env} <- opts do
+                 case String.split(env, "=", parts: 2) do
+                   [env] -> {env, :all}
+                   [env, ""] -> {env, []}
+                   [env, packages] -> {env, String.split(packages, ",")}
+                 end
+               into
+                 default.envs
+               end,
+             include_paths: Keyword.get(opts, :include_paths, false)
+         }
+
+     but got type:
+
+         dynamic()
+
+     where "default" was given the type:
+
+         # type: dynamic()
+         # from: lib/deps_nix.ex:145:13
+         default = to_opts({[], [], []})
+
+     when defining the variable "default", you must also pattern match on "%DepsNix.Options{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 147 │     %Options{
+     │     ~
+     │
+     └─ lib/deps_nix.ex:147:5: DepsNix.to_opts/1
+
+
+
+11:45:18.433 [debug] Building engine:      warning: a struct for DepsNix.Options is expected on struct update:
+
+         %DepsNix.Options{options | output: output}
+
+     but got type:
+
+         dynamic()
+
+     where "options" was given the type:
+
+         # type: dynamic()
+         # from: lib/deps_nix.ex:181:19
+         options
+
+     when defining the variable "options", you must also pattern match on "%DepsNix.Options{}".
+
+     hint: given pattern matching is enough to catch typing errors, you may optionally convert the struct update into a map update. For example, instead of:
+
+         user = some_function()
+         %User{user | name: "John Doe"}
+
+     it is enough to write:
+
+         %User{} = user = some_function()
+         %{user | name: "John Doe"}
+
+     typing violation found at:
+     │
+ 187 │         %Options{options | output: output}
+     │         ~
+     │
+     └─ lib/deps_nix.ex:187:9: DepsNix.add_output/2
+
+
+
+11:45:18.509 [debug] Building engine: Generated deps_nix app
+
+
+11:45:18.727 [debug] Building engine: ==> credo
+
+
+11:45:18.727 [debug] Building engine: Compiling 253 files (.ex)
+
+
+11:45:33.424 [debug] Building engine: Generated credo app
+
+
+11:45:34.112 [debug] Building engine: ==> gen_lsp
+
+
+11:45:34.112 [debug] Building engine: Compiling 472 files (.ex)
+
+
+11:46:01.124 [debug] Building engine: Generated gen_lsp app
+
+
+11:46:01.517 [debug] Building engine: ==> path_glob
+
+
+11:46:01.518 [debug] Building engine: Compiling 2 files (.ex)
+
+
+11:46:21.382 [debug] Building engine: Compiling lib/path_glob.ex (it's taking more than 10s)
+
+
+11:46:21.936 [debug] Building engine: Generated path_glob app
+
+
+11:46:22.729 [debug] Building engine: ==> forge
+
+
+11:46:22.729 [debug] Building engine: Compiling 5 files (.erl)
+
+
+11:46:33.920 [debug] Building engine: Compiling 113 files (.ex)
+
+
+11:46:40.389 [debug] Building engine: Generated forge app
+
+
+11:46:41.859 [debug] sent notification server -> client window/logMessage
+
+11:46:41.859 [debug] sent notification server -> client window/logMessage
+
+11:46:41.866 [debug] handled request client -> server textDocument/hover in 37ms
+
+11:46:41.866 [debug] handled request client -> server textDocument/hover in 37ms
+
+11:46:42.893 [debug] Building engine: ==> engine
+
+
+11:46:42.893 [debug] Building engine: Compiling 102 files (.ex)
+
+
+11:46:49.982 [debug] Building engine: Generated engine app
+
+
+11:47:01.203 [debug] Building engine: Namespacing 1762 files:
+  New: 1762
+  Changed: 0
+  Deleted: 0
+
+
+
+11:47:29.366 [debug] Building engine: Rewriting 22 app files
+
+
+11:47:29.582 [debug] Building engine: Rewriting .beam files
+
+
+11:47:29.782 [debug] Building engine:  Found 0 protocols
+
+
+11:47:29.783 [debug] Building engine:  Found 1670 app beam files
+
+
+11:48:08.576 [debug] Building engine: Finished namespacing .beam files
+
+
+11:48:08.576 [debug] Building engine: Rewriting 0 scripts
+
+
+11:48:08.693 [debug] Building engine: Rebuilding 0 boot files
+
+
+11:48:08.827 [debug] Building engine: Rewriting 0 config scripts.
+
+
+11:48:28.273 [info] Engine build available at: c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns
+
+11:48:28.438 [info] ebin paths:
+["c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/patch/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_briefly/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_bunt/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_credo/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_deps_nix/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_elixir_sense/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_engine/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_file_system/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_forge/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_gen_lsp/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_hpax/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_jason/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_mint/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_nimble_options/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_nimble_parsec/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_path_glob/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_refactorex/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_schematic/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_snowflake/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_sourceror/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_spitfire/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_telemetry/ebin",
+ "c:/Users/simpl/AppData/Local/Expert/0.1.0-rc.0-d3eb92c/ex-1.19.4-erl-15.2.4/0XaY04O5azCbGJ9zAVeaxQ/_build/dev_ns/lib/xp_typed_struct/ebin"]
+
+11:48:28.566 [debug] sent notification server -> client $/progress
+
+11:48:28.569 [debug] sent notification server -> client $/progress
+
+11:48:32.088 [debug] sent notification server -> client $/progress
+
+11:48:32.098 [debug] Node port message: ok
+
+
+11:48:32.713 [debug] Node port message: 
+11:48:32.685 [notice] Application mix exited: :stopped
+
+
+11:48:32.792 [debug] Node port message:     warning: redefining module ExCollision.MixProject (current version defined in memory)
+    │
+  1 │ defmodule ExCollision.MixProject do
+    │ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    │
+    └─ d:/projects/elixir/ex_collision/mix.exs:1: ExCollision.MixProject (module)
+
+
+
+11:48:32.832 [debug] sent notification server -> client $/progress
+
+11:48:32.832 [debug] sent notification server -> client $/progress
+
+11:48:32.927 [debug] sent notification server -> client $/progress
+
+11:48:33.473 [debug] Node port message: 
+11:48:33.472 [info] Build path d:\projects\elixir\ex_collision/.expert/build/erl-27/elixir-1.19 was compiled on a previous erlang version. Deleting
+
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.591 [debug] sent notification server -> client $/progress
+
+11:48:33.591 [debug] sent notification server -> client $/progress
+
+11:48:33.591 [debug] sent notification server -> client $/progress
+
+11:48:33.590 [debug] sent notification server -> client $/progress
+
+11:48:33.595 [debug] sent notification server -> client $/progress
+
+11:48:33.595 [info] Child {XPExpert.Project.Node, "ex_collision"} of Supervisor :"ex_collision::supervisor" started
+Pid: #PID<0.176.0>
+Start Call: XPExpert.Project.Node.start_link(%XPForge.Project{root_uri: "file:///d%3A/projects/elixir/ex_collision", mix_exs_uri: "file:///d%3A/projects/elixir/ex_collision/mix.exs", mix_project?: true, mix_env: nil, mix_target: nil, env_variables: %{}, project_module: nil, entropy: 47682})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:48:33.603 [info] Child {XPExpert.Project.Diagnostics, "ex_collision"} of Supervisor :"ex_collision::supervisor" started
+Pid: #PID<0.220.0>
+Start Call: XPExpert.Project.Diagnostics.start_link(%XPForge.Project{root_uri: "file:///d%3A/projects/elixir/ex_collision", mix_exs_uri: "file:///d%3A/projects/elixir/ex_collision/mix.exs", mix_project?: true, mix_env: nil, mix_target: nil, env_variables: %{}, project_module: nil, entropy: 47682})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:48:33.606 [info] Child {XPExpert.Project.Intelligence, "ex_collision"} of Supervisor :"ex_collision::supervisor" started
+Pid: #PID<0.221.0>
+Start Call: XPExpert.Project.Intelligence.start_link(%XPForge.Project{root_uri: "file:///d%3A/projects/elixir/ex_collision", mix_exs_uri: "file:///d%3A/projects/elixir/ex_collision/mix.exs", mix_project?: true, mix_env: nil, mix_target: nil, env_variables: %{}, project_module: nil, entropy: 47682})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:48:33.612 [info] Child XPExpert.Project.SearchListener of Supervisor :"ex_collision::supervisor" started
+Pid: #PID<0.222.0>
+Start Call: XPExpert.Project.SearchListener.start_link(%XPForge.Project{root_uri: "file:///d%3A/projects/elixir/ex_collision", mix_exs_uri: "file:///d%3A/projects/elixir/ex_collision/mix.exs", mix_project?: true, mix_env: nil, mix_target: nil, env_variables: %{}, project_module: nil, entropy: 47682})
+Restart: :permanent
+Shutdown: 5000
+Type: :worker
+
+11:48:33.612 [info] Project node started for ex_collision
+
+11:48:33.613 [debug] sent notification server -> client window/logMessage
+
+11:48:33.613 [info] [Project file:///d%3A/projects/elixir/ex_collision] Engine initialized for project ex_collision
+
+11:48:33.613 [debug] sent notification server -> client window/logMessage
+
+11:48:33.673 [debug] Node port message: 
+11:48:33.673 [info] Building ex_collision
+
+
+11:48:33.674 [debug] Node port message: 
+11:48:33.673 [debug] sent request server -> client window/workDoneProgress/create
+
+
+11:48:33.675 [debug] Node port message: 
+11:48:33.674 [debug] sent notification server -> client $/progress
+
+
+11:48:33.714 [debug] Node port message: 
+11:48:33.714 [warning] Could not connect to hex.pm, dependencies will not be fetched
+
+
+11:48:33.715 [debug] Node port message: 
+11:48:33.714 [debug] sent notification server -> client $/progress
+
+
+11:48:33.724 [debug] Node port message: 
+11:48:33.723 [debug] sent notification server -> client $/progress
+
+
+11:48:33.733 [debug] Node port message: 
+11:48:33.733 [info] Loaded []
+
+
+11:48:33.735 [debug] Node port message: 
+11:48:33.733 [debug] sent notification server -> client $/progress
+
+
+11:48:33.895 [debug] Node port message: Unchecked dependencies for environment test:
+
+
+11:48:33.895 [debug] Node port message: * sweet_xml (Hex package)
+
+
+11:48:33.895 [debug] sent request server -> client window/showMessageRequest
+
+11:48:33.895 [debug] Node port message:   the dependency is not available, run "mix deps.get"
+
+
+11:48:33.909 [debug] Node port message: 
+11:48:33.898 [error] Process #PID<0.237.0> on node :"expert-project-ex_collision-47682@127.0.0.1" raised an exception
+** (Mix.Error) Can't continue due to errors on dependencies
+    (mix 1.19.4) lib/mix.ex:647: Mix.raise/2
+    (mix 1.19.4) lib/mix/tasks/deps.loadpaths.ex:107: Mix.Tasks.Deps.Loadpaths.deps_check/3
+    (mix 1.19.4) lib/mix/tasks/deps.loadpaths.ex:73: Mix.Tasks.Deps.Loadpaths.run/1
+    (mix 1.19.4) lib/mix/task.ex:499: anonymous fn/3 in Mix.Task.run_task/5
+    (mix 1.19.4) lib/mix/tasks/loadpaths.ex:43: Mix.Tasks.Loadpaths.run/1
+    (mix 1.19.4) lib/mix/task.ex:499: anonymous fn/3 in Mix.Task.run_task/5
+    (mix 1.19.4) lib/mix/tasks/compile.ex:139: Mix.Tasks.Compile.run/1
+    (mix 1.19.4) lib/mix/task.ex:499: anonymous fn/3 in Mix.Task.run_task/5
+
+
+11:48:33.916 [debug] Node port message: 
+11:48:33.915 [debug] sent notification server -> client $/progress
+
+
+11:48:33.920 [info] Compiled ex_collision in 246 ms
+
+11:48:33.943 [debug] Node port message: 
+11:48:33.942 [info] Plugins found 0 results in 0.102 ms
+
+
+11:48:34.205 [debug] Node port message: 
+11:48:34.205 [info] backend reports empty
+
+
+11:48:34.225 [debug] Node port message: 
+11:48:34.225 [debug] sent request server -> client window/workDoneProgress/create
+
+
+11:48:34.227 [debug] Node port message: 
+11:48:34.226 [debug] sent notification server -> client $/progress
+
+
+11:48:34.233 [debug] Node port message: 
+11:48:34.232 [debug] sent notification server -> client $/progress
+
+
+11:48:35.404 [debug] Node port message: 
+11:48:35.404 [debug] sent notification server -> client $/progress
+
+
+11:49:56.739 [debug] sent notification server -> client window/logMessage
+
+11:49:56.739 [debug] handled request client -> server textDocument/documentSymbol in 6ms
+
+11:50:12.274 [debug] handled notification client -> server textDocument/didChange in 20ms
+
+11:50:12.709 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 10ms
+
+11:50:12.870 [debug] sent notification server -> client window/logMessage
+
+11:50:12.870 [debug] handled request client -> server textDocument/documentSymbol in 717µs
+
+11:50:13.906 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:50:14.764 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:50:14.991 [debug] sent notification server -> client window/logMessage
+
+11:50:14.991 [debug] handled request client -> server textDocument/documentSymbol in 922µs
+
+11:50:15.654 [debug] sent notification server -> client window/logMessage
+
+11:50:15.654 [debug] handled request client -> server textDocument/documentSymbol in 512µs
+
+11:50:16.304 [debug] sent notification server -> client window/logMessage
+
+11:50:16.304 [debug] handled request client -> server textDocument/codeLens in 1ms
+
+11:50:21.575 [debug] sent notification server -> client window/logMessage
+
+11:50:21.575 [debug] handled request client -> server textDocument/hover in 717µs
+
+11:50:21.575 [debug] sent notification server -> client window/logMessage
+
+11:50:21.575 [debug] handled request client -> server textDocument/hover in 614µs
+
+11:50:27.249 [debug] handled notification client -> server textDocument/didChange in 922µs
+
+11:50:27.912 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:50:28.075 [debug] sent notification server -> client window/logMessage
+
+11:50:28.075 [debug] handled request client -> server textDocument/documentSymbol in 819µs
+
+11:50:28.238 [debug] sent notification server -> client window/logMessage
+
+11:50:28.238 [debug] handled request client -> server textDocument/documentSymbol in 1ms
+
+11:50:29.652 [debug] sent notification server -> client window/logMessage
+
+11:50:29.652 [debug] handled request client -> server textDocument/codeLens in 615µs
+
+11:50:31.400 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/world/world.ex
+
+11:50:31.400 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:50:32.071 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 410µs
+
+11:50:33.184 [debug] handled notification client -> server textDocument/didChange in 922µs
+
+11:50:33.784 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 308µs
+
+11:50:35.343 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:50:35.951 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 614µs
+
+11:50:37.456 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:50:38.199 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:50:39.657 [debug] handled notification client -> server textDocument/didChange in 819µs
+
+11:50:40.302 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:50:45.284 [debug] handled notification client -> server textDocument/didChange in 820µs
+
+11:50:45.868 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 615µs
+
+11:50:48.034 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:50:48.631 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:50:49.511 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:50:50.087 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:50:53.069 [debug] handled notification client -> server textDocument/didChange in 921µs
+
+11:50:53.947 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:50:54.240 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:50:55.017 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 512µs
+
+11:50:56.809 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:50:57.598 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 717µs
+
+11:51:02.025 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:51:03.050 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 410µs
+
+11:51:04.271 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:51:05.246 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:51:06.885 [debug] handled notification client -> server textDocument/didChange in 922µs
+
+11:51:07.948 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:51:10.357 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:51:11.154 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 409µs
+
+11:51:12.208 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:51:12.839 [debug] sent notification server -> client window/logMessage
+
+11:51:12.841 [debug] handled request client -> server textDocument/hover in 1ms
+
+11:51:12.841 [debug] sent notification server -> client window/logMessage
+
+11:51:12.841 [debug] handled request client -> server textDocument/hover in 1ms
+
+11:51:12.949 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 410µs
+
+11:51:13.480 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:51:13.643 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 512µs
+
+11:51:22.447 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/world/body.ex
+
+11:51:22.447 [debug] handled notification client -> server textDocument/didOpen in 2ms
+
+11:51:23.302 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 204µs
+
+11:51:24.181 [debug] handled notification client -> server textDocument/didChange in 2ms
+
+11:51:25.244 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:51:26.169 [debug] handled notification client -> server textDocument/didChange in 614µs
+
+11:51:26.349 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 512µs
+
+11:51:30.269 [debug] handled notification client -> server textDocument/didChange in 717µs
+
+11:51:31.139 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 410µs
+
+11:51:31.872 [debug] handled notification client -> server textDocument/didChange in 2ms
+
+11:51:32.706 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 512µs
+
+11:51:36.730 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/pathfinding/astar.ex
+
+11:51:36.730 [debug] handled notification client -> server textDocument/didOpen in 2ms
+
+11:51:36.993 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 410µs
+
+11:51:39.436 [debug] handled notification client -> server textDocument/didChange in 614µs
+
+11:51:40.240 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 204µs
+
+11:51:40.780 [debug] handled notification client -> server textDocument/didChange in 1ms
+
+11:51:41.934 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:51:42.817 [debug] handled notification client -> server textDocument/didChange in 819µs
+
+11:51:43.536 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:51:44.316 [debug] handled notification client -> server textDocument/didChange in 717µs
+
+11:51:45.008 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:51:46.013 [debug] handled notification client -> server textDocument/didChange in 922µs
+
+11:51:46.292 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:51:47.469 [debug] handled notification client -> server textDocument/didChange in 512µs
+
+11:51:48.188 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 409µs
+
+11:51:49.025 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/geometry/vec2.ex
+
+11:51:49.025 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:51:49.842 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 921µs
+
+11:51:51.135 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/geometry/aabb.ex
+
+11:51:51.136 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:51:51.411 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:51:57.492 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/protocols/tile_source.ex
+
+11:51:57.492 [debug] handled notification client -> server textDocument/didOpen in 2ms
+
+11:51:57.661 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:51:59.882 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:51:59.997 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/protocols/collidable.ex
+
+11:51:59.997 [debug] handled notification client -> server textDocument/didOpen in 5ms
+
+11:52:03.343 [debug] sent notification server -> client window/logMessage
+
+11:52:03.343 [debug] handled request client -> server textDocument/documentSymbol in 410µs
+
+11:52:03.809 [debug] sent notification server -> client window/logMessage
+
+11:52:03.810 [debug] handled request client -> server textDocument/documentSymbol in 1ms
+
+11:52:06.134 [debug] sent notification server -> client window/logMessage
+
+11:52:06.136 [debug] handled request client -> server textDocument/codeLens in 716µs
+
+11:52:10.475 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/parser.ex
+
+11:52:10.475 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:52:11.005 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 512µs
+
+11:52:11.578 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/map.ex
+
+11:52:11.578 [debug] handled notification client -> server textDocument/didOpen in 2ms
+
+11:52:11.951 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 615µs
+
+11:52:13.301 [debug] handled notification client -> server textDocument/didChange in 614µs
+
+11:52:13.667 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 512µs
+
+11:52:15.143 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/layer.ex
+
+11:52:15.143 [debug] handled notification client -> server textDocument/didOpen in 2ms
+
+11:52:15.564 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 102µs
+
+11:52:16.486 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/object_group.ex
+
+11:52:16.486 [debug] handled notification client -> server textDocument/didOpen in 2ms
+
+11:52:16.799 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:52:19.230 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/map_object.ex
+
+11:52:19.230 [debug] handled notification client -> server textDocument/didOpen in 5ms
+
+11:52:19.473 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 102µs
+
+11:52:20.408 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/tile_layer.ex
+
+11:52:20.408 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:52:20.780 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:52:22.738 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/tile_layer_tile_source.ex
+
+11:52:22.738 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:52:23.075 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 204µs
+
+11:52:23.783 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/tileset.ex
+
+11:52:23.784 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:52:24.171 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:52:30.240 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/world_builder.ex
+
+11:52:30.240 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:52:30.614 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 512µs
+
+11:52:31.337 [debug] sent notification server -> client window/logMessage
+
+11:52:31.337 [debug] handled request client -> server textDocument/documentSymbol in 1ms
+
+11:52:31.719 [debug] sent notification server -> client window/logMessage
+
+11:52:31.721 [debug] handled request client -> server textDocument/documentSymbol in 1ms
+
+11:52:34.059 [debug] sent notification server -> client window/logMessage
+
+11:52:34.059 [debug] handled request client -> server textDocument/codeLens in 819µs
+
+11:52:36.072 [debug] handled notification client -> server textDocument/didChange in 717µs
+
+11:52:36.493 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 205µs
+
+11:52:38.533 [debug] handled notification client -> server textDocument/didChange in 922µs
+
+11:52:38.965 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 307µs
+
+11:52:42.428 [debug] sent notification server -> client window/logMessage
+
+11:52:42.429 [debug] handled request client -> server textDocument/documentSymbol in 717µs
+
+11:52:42.737 [debug] sent notification server -> client window/logMessage
+
+11:52:42.737 [debug] handled request client -> server textDocument/documentSymbol in 921µs
+
+11:52:43.348 [info] Opened file:///d%3A/projects/elixir/ex_collision/lib/ex_collision/tmx/tile_layer_impl.ex
+
+11:52:43.348 [debug] handled notification client -> server textDocument/didOpen in 1ms
+
+11:52:43.360 [debug] sent notification server -> client window/logMessage
+
+11:52:43.360 [debug] handled request client -> server textDocument/documentSymbol in 1ms
+
+11:52:43.654 [debug] sent notification server -> client window/logMessage
+
+11:52:43.654 [debug] handled request client -> server textDocument/documentSymbol in 819µs
+
+11:52:45.857 [debug] sent notification server -> client window/logMessage
+
+11:52:45.857 [debug] handled request client -> server textDocument/codeLens in 1ms
+
+11:52:46.880 [debug] handled notification client -> server textDocument/didChange in 819µs
+
+11:52:47.237 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 819µs
+
+11:52:48.399 [debug] handled notification client -> server textDocument/didChange in 409µs
+
+11:52:48.664 [debug] handled notification client -> server workspace/didChangeWatchedFiles in 204µs

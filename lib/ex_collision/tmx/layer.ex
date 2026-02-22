@@ -1,7 +1,7 @@
 defmodule ExCollision.TMX.Layer do
   @moduledoc """
-  Базовый тип слоя TMX (tile layer или object group).
-  Реализует протокол `ExCollision.Protocols.TMXLayer` для единообразного доступа.
+  Base TMX layer type (tile layer or object group).
+  Implements `ExCollision.Protocols.TMXLayer` for uniform access.
   """
   @type t :: ExCollision.TMX.TileLayer.t() | ExCollision.TMX.ObjectGroup.t()
 end

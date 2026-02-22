@@ -1,6 +1,6 @@
 defmodule ExCollision.Geometry.Vec2 do
   @moduledoc """
-  Двумерный вектор. Реализует протоколы `Inspect` и `String.Chars`.
+  Two-dimensional vector. Implements `Inspect` and `String.Chars` protocols.
   """
   defstruct [:x, :y]
 

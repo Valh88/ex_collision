@@ -1,17 +1,17 @@
 defprotocol ExCollision.Protocols.TileSource do
   @moduledoc """
-  Протокол для источников тайловой сетки (слой TMX, тайлмап мира).
-  Позволяет получать GID по координатам тайла и проверять проходимость.
+  Protocol for tile grid sources (TMX layer, world tilemap).
+  Provides tile GID by coordinates and walkability checks.
   """
-  @doc "Ширина в тайлах"
+  @doc "Width in tiles"
   def width(source)
 
-  @doc "Высота в тайлах"
+  @doc "Height in tiles"
   def height(source)
 
-  @doc "GID тайла по индексу (column + row * width), 0 = пусто"
+  @doc "Tile GID by index (column + row * width), 0 = empty"
   def tile_at(source, index)
 
-  @doc "Проходим ли тайл (не стена) для pathfinding. По умолчанию: gid == 0 — проходимо"
+  @doc "Whether tile is walkable (not a wall) for pathfinding. Default: gid == 0 is walkable"
   def walkable?(source, index)
 end

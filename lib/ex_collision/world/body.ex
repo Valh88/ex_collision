@@ -1,18 +1,18 @@
 defmodule ExCollision.World.Body do
   @moduledoc """
-  Динамическое тело в мире коллизий (AABB + метаданные).
-  Реализует протокол `Collidable`.
+  Dynamic body in the collision world (AABB + metadata).
+  Implements the `Collidable` protocol.
 
-  Игрок и другие движущиеся объекты — это Body в мире, а не MapObject.
-  MapObject — статические объекты из TMX (objectgroup); Body — динамические тела с velocity и интерполяцией.
+  Player and other moving objects are Body in the world, not MapObject.
+  MapObject — static objects from TMX (objectgroup); Body — dynamic bodies with velocity and interpolation.
 
-  Опция `:on_collision` — функция (world, body_id, collided_ids, hit_static) -> world,
-  вызывается при коллизии; можно удалить тело (пулю), нанести урон и т.д.
+  Option `:on_collision` — function (world, body_id, collided_ids, hit_static) -> world,
+  called on collision; can remove body (bullet), apply damage, etc.
    (world, body_id, collided_body_ids, hit_static) -> world
-    world — текущий мир
-    body_id — id тела, которое столкнулось
-    collided_body_ids — список id тел, с которыми столкнулось (например, игроки)
-    hit_static — true, если было столкновение со статикой (стена и т.п.)
+    world — current world
+    body_id — id of the body that collided
+    collided_body_ids — list of body ids that were hit (e.g. players)
+    hit_static — true if collision with static (wall, etc.)
   """
   defstruct [:id, :aabb, :previous_aabb, :velocity, :static, :data, :on_collision]
 
@@ -58,7 +58,7 @@ defmodule ExCollision.World.Body do
     new(id, AABB.from_center(center_x, center_y, width, height), opts)
   end
 
-  @doc "Задать колбек при коллизии: (world, body_id, [id тел], hit_static) -> world"
+  @doc "Set collision callback: (world, body_id, [body ids], hit_static) -> world"
   def set_on_collision(%__MODULE__{} = body, callback)
       when is_function(callback, 4) or is_nil(callback) do
     %{body | on_collision: callback}
@@ -80,23 +80,23 @@ defmodule ExCollision.World.Body do
     {aabb.min_x, aabb.min_y}
   end
 
-  @doc "Центр AABB (для отрисовки)"
+  @doc "AABB center (for rendering)"
   def center(%__MODULE__{aabb: aabb}) do
     AABB.center(aabb)
   end
 
-  @doc "Задать скорость тела (vx, vy) в пикселях/сек"
+  @doc "Set body velocity (vx, vy) in pixels/sec"
   def set_velocity(%__MODULE__{} = body, vx, vy) when is_number(vx) and is_number(vy) do
     %{body | velocity: {vx, vy}}
   end
 
-  @doc "Убрать скорость"
+  @doc "Clear velocity"
   def set_velocity(%__MODULE__{} = body, nil), do: %{body | velocity: nil}
 
   @doc """
-  Интерполированная позиция центра для плавной отрисовки.
-  alpha in [0, 1]: 0 = предыдущий кадр, 1 = текущий кадр.
-  Если previous_aabb нет, возвращает текущий центр.
+  Interpolated center position for smooth rendering.
+  alpha in [0, 1]: 0 = previous frame, 1 = current frame.
+  If previous_aabb is nil, returns current center.
   """
   def interpolated_center(%__MODULE__{aabb: aabb, previous_aabb: nil}, _alpha) do
     AABB.center(aabb)
@@ -113,7 +113,7 @@ defmodule ExCollision.World.Body do
     }
   end
 
-  @doc "Интерполированный левый верхний угол (min_x, min_y)"
+  @doc "Interpolated top-left corner (min_x, min_y)"
   def interpolated_position(%__MODULE__{aabb: aabb, previous_aabb: nil}, _alpha) do
     {aabb.min_x, aabb.min_y}
   end

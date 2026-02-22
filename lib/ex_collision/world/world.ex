@@ -1,8 +1,8 @@
 defmodule ExCollision.World do
   @moduledoc """
-  Мир коллизий: статические и динамические тела (AABB).
-  Поддерживает проверку коллизий и симуляцию (шаг с разрешением коллизий).
-  Реализует `Enumerable` по телам.
+  Collision world: static and dynamic bodies (AABB).
+  Supports collision checks and simulation (step with collision resolution).
+  Implements `Enumerable` over bodies.
   """
   defstruct [:bodies, :static_bodies, :next_id]
 
@@ -23,12 +23,12 @@ defmodule ExCollision.World do
     }
   end
 
-  @doc "Добавить статическое AABB (например, из тайлов или objectgroup)"
+  @doc "Add static AABB (e.g. from tiles or objectgroup)"
   def add_static(world, aabb) when is_struct(aabb, AABB) do
     update_in(world.static_bodies, &[aabb | &1])
   end
 
-  @doc "Удалить статический AABB по индексу (0 = первый добавленный). Возвращает {:ok, world} или {:error, :out_of_range}."
+  @doc "Remove static AABB by index (0 = first added). Returns {:ok, world} or {:error, :out_of_range}."
   def remove_static_at(world, index) when is_integer(index) and index >= 0 do
     if index < length(world.static_bodies) do
       new_static = List.delete_at(world.static_bodies, index)
@@ -38,10 +38,10 @@ defmodule ExCollision.World do
     end
   end
 
-  @doc "Количество статических AABB в мире"
+  @doc "Number of static AABBs in the world"
   def static_count(world), do: length(world.static_bodies)
 
-  @doc "Добавить тело и вернуть {world, body_id}"
+  @doc "Add body and return {world, body_id}"
   def add_body(world, body) when is_struct(body, Body) do
     id = body.id || world.next_id
 
@@ -53,30 +53,30 @@ defmodule ExCollision.World do
     {world, id}
   end
 
-  @doc "Добавить объект (динамическое тело) в мир. Возвращает {world, id}."
+  @doc "Add object (dynamic body) to world. Returns {world, id}."
   def add_object(world, body) when is_struct(body, Body), do: add_body(world, body)
 
-  @doc "Удалить тело по id"
+  @doc "Remove body by id"
   def remove_body(world, id) do
     update_in(world.bodies, &Map.delete(&1, id))
   end
 
-  @doc "Удалить объект (тело) из мира по id. Возвращает обновлённый мир."
+  @doc "Remove object (body) from world by id. Returns updated world."
   def remove_object(world, id), do: remove_body(world, id)
 
-  @doc "Получить тело по id"
+  @doc "Get body by id"
   def get_body(world, id), do: Map.get(world.bodies, id)
 
-  @doc "Получить объект (тело) по id"
+  @doc "Get object (body) by id"
   def get_object(world, id), do: get_body(world, id)
 
-  @doc "Проверить, есть ли тело/объект с данным id в мире"
+  @doc "Check if body/object with given id exists in world"
   def has_body?(world, id), do: Map.has_key?(world.bodies, id)
 
-  @doc "Список id всех объектов (тел) в мире"
+  @doc "List of all object (body) ids in world"
   def body_ids(world), do: Map.keys(world.bodies)
 
-  @doc "Проверить, пересекаются ли два тела (например пуля и игрок)"
+  @doc "Check if two bodies intersect (e.g. bullet and player)"
   def bodies_intersect?(world, body_id_a, body_id_b) do
     a = get_body(world, body_id_a)
     b = get_body(world, body_id_b)
@@ -84,9 +84,9 @@ defmodule ExCollision.World do
   end
 
   @doc """
-  Список id тел, пересекающих заданный AABB (например куда хотела перейти пуля).
-  exclude_body_id — не учитывать это тело (саму пулю).
-  Удобно при коллизии пули: куда бы она перешла — в кого попала.
+  List of body ids intersecting the given AABB (e.g. where a bullet would move).
+  exclude_body_id — body to ignore (the bullet itself).
+  Useful for bullet collision: where it would move — who it hit.
   """
   def bodies_intersecting_aabb(world, aabb, exclude_body_id \\ nil) do
     world.bodies
@@ -95,7 +95,7 @@ defmodule ExCollision.World do
     |> Enum.map(fn {id, _body} -> id end)
   end
 
-  @doc "Проверить, пересекается ли AABB с миром (статикой или телом)"
+  @doc "Check if AABB collides with world (static or body)"
   def collides?(world, aabb, exclude_body_id \\ nil) do
     collides_static?(world.static_bodies, aabb) or
       collides_any_body?(world.bodies, aabb, exclude_body_id)
@@ -115,10 +115,10 @@ defmodule ExCollision.World do
   end
 
   @doc """
-  Попытаться сдвинуть тело на (dx, dy); при коллизии тело не двигается.
-  Если у тела задан `on_collision`, вызывается с (world, body_id, [id столкнувшихся тел], hit_static);
-  колбек возвращает обновлённый мир (например, удалить пулю, нанести урон).
-  Возвращает {:ok, world, body} | {:collision, world, body} | {:error, :not_found}.
+  Try to move body by (dx, dy); on collision the body does not move.
+  If body has `on_collision` set, it is called with (world, body_id, [collided body ids], hit_static);
+  callback returns updated world (e.g. remove bullet, apply damage).
+  Returns {:ok, world, body} | {:collision, world, body} | {:error, :not_found}.
   """
   def move_body(world, body_id, dx, dy) do
     case get_body(world, body_id) do
@@ -197,15 +197,15 @@ defmodule ExCollision.World do
     end
   end
 
-  @doc "Обновить тело в мире"
+  @doc "Update body in world"
   def put_body(world, body) do
     put_in(world.bodies[body.id], body)
   end
 
-  @doc "Обновить объект (тело) в мире по его id"
+  @doc "Update object (body) in world by its id"
   def put_object(world, body) when is_struct(body, Body), do: put_body(world, body)
 
-  @doc "Задать скорость тела (vx, vy) в пикселях/сек"
+  @doc "Set body velocity (vx, vy) in pixels/sec"
   def set_velocity(world, body_id, vx, vy) do
     case get_body(world, body_id) do
       nil ->
@@ -218,21 +218,21 @@ defmodule ExCollision.World do
   end
 
   @doc """
-  Шаг симуляции мира: для каждого динамического тела с velocity применяет движение,
-  сохраняет previous_aabb для интерполяции, разрешает коллизии (при столкновении движение отменяется).
-  Возвращает обновлённый мир.
+  World simulation step: for each dynamic body with velocity applies movement,
+  stores previous_aabb for interpolation, resolves collisions (on collision movement is reverted).
+  Returns updated world.
 
-  Вызывайте каждый серверный тик (например, в GenServer или игровом цикле):
+  Call every server tick (e.g. in GenServer or game loop):
   `world = World.step(world, dt)`.
-  - **dt** — время шага в секундах. При фиксированном тике 60 раз/сек используйте `1/60`.
-  - Для детерминированной симуляции лучше фиксированный dt; для привязки к реальному времени — фактический интервал между тиками.
+  - **dt** — step time in seconds. For fixed 60 ticks/sec use `1/60`.
+  - For deterministic simulation use fixed dt; for real-time use actual interval between ticks.
   """
   def step(world, dt) when is_number(dt) and dt >= 0 do
     world.bodies
     |> Map.values()
     |> Enum.reduce(world, fn body, acc ->
       if body.static or body.velocity == nil do
-        # Сохраняем previous_aabb даже для статики/без скорости (для интерполяции)
+        # Keep previous_aabb even for static/no velocity (for interpolation)
         body = %{body | previous_aabb: body.aabb}
         put_body(acc, body)
       else
@@ -244,7 +244,7 @@ defmodule ExCollision.World do
 
         case move_body(acc, body.id, dx, dy) do
           {:ok, new_world, _new_body} -> new_world
-          # Используем мир после колбека (колбек мог удалить тело, нанести урон и т.д.)
+          # Use world after callback (callback may have removed body, applied damage, etc.)
           {:collision, updated_world, _body} -> updated_world
           {:error, _} -> acc
         end
@@ -253,9 +253,9 @@ defmodule ExCollision.World do
   end
 
   @doc """
-  Интерполированная позиция тела для плавной отрисовки.
-  alpha in [0, 1]: 0 = предыдущий кадр, 1 = текущий (например: time_since_step / step_interval).
-  Возвращает {:ok, {x, y}} — левый верхний угол, или {:error, :not_found}.
+  Interpolated body position for smooth rendering.
+  alpha in [0, 1]: 0 = previous frame, 1 = current (e.g.: time_since_step / step_interval).
+  Returns {:ok, {x, y}} — top-left corner, or {:error, :not_found}.
   """
   def get_interpolated_position(world, body_id, alpha) do
     case get_body(world, body_id) do
@@ -264,7 +264,7 @@ defmodule ExCollision.World do
     end
   end
 
-  @doc "Интерполированный центр тела (для отрисовки спрайта по центру)"
+  @doc "Interpolated body center (for sprite rendering by center)"
   def get_interpolated_center(world, body_id, alpha) do
     case get_body(world, body_id) do
       nil -> {:error, :not_found}
@@ -272,7 +272,7 @@ defmodule ExCollision.World do
     end
   end
 
-  @doc "Количество тел"
+  @doc "Number of bodies"
   def body_count(world) do
     map_size(world.bodies)
   end

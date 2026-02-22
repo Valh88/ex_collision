@@ -1,8 +1,8 @@
 defprotocol ExCollision.Protocols.Collidable do
   @moduledoc """
-  Протокол для объектов, участвующих в проверке коллизий.
-  Требует возвращать AABB для пересечения.
+  Protocol for objects participating in collision checks.
+  Requires returning AABB for intersection.
   """
-  @doc "Возвращает AABB данного объекта"
+  @doc "Returns the AABB of this object"
   def aabb(collidable)
 end

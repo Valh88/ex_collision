@@ -1,8 +1,8 @@
 defmodule ExCollision.TMX.TileLayerTileSource do
   @moduledoc """
-  Делегат/обёртка TileLayer для протокола TileSource.
-  Позволяет использовать слой TMX в pathfinding и проверке проходимости.
-  Опции: `:solid_gids` — список GID, считающихся стенами (по умолчанию любой ненулевой — стена).
+  TileLayer delegate/wrapper for TileSource protocol.
+  Allows using TMX layer for pathfinding and walkability checks.
+  Options: `:solid_gids` — list of GIDs treated as walls (default: any non-zero is wall).
   """
   defstruct [:layer, :solid_gids]
 
