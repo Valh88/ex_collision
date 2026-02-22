@@ -19,7 +19,7 @@ defmodule ExCollision.MixProject do
   defp package do
     [
       name: :ex_collision,
-      files: ["lib", "mix.exs", "README.md"],
+      files: ["lib", "mix.exs", "README.md", "data", "test"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/Valh88/ex_collision"}
     ]
