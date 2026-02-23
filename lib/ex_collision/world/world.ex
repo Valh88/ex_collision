@@ -272,6 +272,105 @@ defmodule ExCollision.World do
     end
   end
 
+  @doc """
+  Рейкастинг: возвращает **ближайшее** попадание луча `from → to` или `:miss`.
+
+  - `from` / `to` — `{x, y}` начало и конец луча; задают направление и максимальную длину.
+  - `t ∈ [0, 1]` — параметр вдоль луча: `0` = `from`, `1` = `to`.
+  - Опции:
+    - `:check_static` (default `true`) — проверять статические AABB
+    - `:check_dynamic` (default `true`) — проверять динамические тела
+    - `:exclude_body_id` — пропустить тело с этим id (например, стрелок)
+
+  Возвращает:
+    - `{:hit, t, {x, y}, tag}` где `tag` = `{:static, aabb}` | `{:body, body_id}`
+    - `:miss`
+  """
+  @spec raycast(t(), {number(), number()}, {number(), number()}, keyword()) ::
+          {:hit, float(), {float(), float()}, {:static, AABB.t()} | {:body, term()}} | :miss
+  def raycast(world, from, to, opts \\ []) do
+    case raycast_all(world, from, to, opts) do
+      [] -> :miss
+      [{t, point, tag} | _] -> {:hit, t, point, tag}
+    end
+  end
+
+  @doc """
+  Рейкастинг: возвращает **все** попадания вдоль луча `from → to`, отсортированные от ближайшего к дальнему.
+
+  Каждый элемент: `{t, {x, y}, tag}`. Опции: те же, что у `raycast/4`.
+  """
+  @spec raycast_all(t(), {number(), number()}, {number(), number()}, keyword()) ::
+          [{float(), {float(), float()}, {:static, AABB.t()} | {:body, term()}}]
+  def raycast_all(world, {ox, oy}, {tx, ty}, opts \\ []) do
+    check_static = Keyword.get(opts, :check_static, true)
+    check_dynamic = Keyword.get(opts, :check_dynamic, true)
+    exclude_id = Keyword.get(opts, :exclude_body_id, nil)
+
+    dx = tx - ox
+    dy = ty - oy
+
+    static_hits =
+      if check_static do
+        Enum.flat_map(world.static_bodies, fn aabb ->
+          case ray_vs_aabb({ox, oy}, {dx, dy}, aabb) do
+            {:hit, t} -> [{t, {ox + t * dx, oy + t * dy}, {:static, aabb}}]
+            :miss -> []
+          end
+        end)
+      else
+        []
+      end
+
+    body_hits =
+      if check_dynamic do
+        world.bodies
+        |> maybe_drop_id(exclude_id)
+        |> Enum.flat_map(fn {id, body} ->
+          case ray_vs_aabb({ox, oy}, {dx, dy}, body.aabb) do
+            {:hit, t} -> [{t, {ox + t * dx, oy + t * dy}, {:body, id}}]
+            :miss -> []
+          end
+        end)
+      else
+        []
+      end
+
+    (static_hits ++ body_hits) |> Enum.sort_by(fn {t, _, _} -> t end)
+  end
+
+  defp maybe_drop_id(bodies, nil), do: bodies
+  defp maybe_drop_id(bodies, id), do: Map.delete(bodies, id)
+
+  # Ray vs AABB — метод плит (slab method). t ∈ [0, 1] по длине луча.
+  defp ray_vs_aabb({ox, oy}, {dx, dy}, %AABB{min_x: min_x, min_y: min_y, max_x: max_x, max_y: max_y}) do
+    case {ray_slab(ox, dx, min_x, max_x), ray_slab(oy, dy, min_y, max_y)} do
+      {:miss, _} ->
+        :miss
+      {_, :miss} ->
+        :miss
+      {{:ok, tx_min, tx_max}, {:ok, ty_min, ty_max}} ->
+        t_enter = max(tx_min, ty_min)
+        t_exit = min(tx_max, ty_max)
+        if t_enter <= t_exit and t_exit >= 0.0 and t_enter <= 1.0 do
+          {:hit, max(t_enter, 0.0)}
+        else
+          :miss
+        end
+    end
+  end
+
+  # Пересечение луча с одной плитой (одна ось). Возвращает {:ok, t_min, t_max} или :miss.
+  defp ray_slab(origin, dir, box_min, box_max) do
+    if dir == 0 do
+      if origin >= box_min and origin <= box_max, do: {:ok, -1.0e15, 1.0e15}, else: :miss
+    else
+      t1 = (box_min - origin) / dir
+      t2 = (box_max - origin) / dir
+      {:ok, min(t1, t2), max(t1, t2)}
+    end
+  end
+
   @doc "Number of bodies"
   def body_count(world) do
     map_size(world.bodies)

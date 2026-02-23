@@ -82,4 +82,22 @@ defmodule ExCollision do
   defdelegate world_bodies_intersecting_aabb(world, aabb, exclude_id \\ nil),
     to: ExCollision.World,
     as: :bodies_intersecting_aabb
+
+  @doc """
+  Рейкастинг: ближайшее попадание луча `from → to` со статическими/динамическими телами.
+  Возвращает `{:hit, t, {x, y}, tag}` или `:miss`.
+  `tag` = `{:static, aabb}` | `{:body, body_id}`. `t ∈ [0, 1]` — где вдоль луча попало.
+  Опции: `:check_static`, `:check_dynamic`, `:exclude_body_id`.
+  """
+  defdelegate world_raycast(world, from, to, opts \\ []),
+    to: ExCollision.World,
+    as: :raycast
+
+  @doc """
+  Рейкастинг: все попадания луча `from → to`, отсортированные от ближайшего к дальнему.
+  Каждый элемент: `{t, {x, y}, tag}`. Опции: те же, что у `world_raycast/4`.
+  """
+  defdelegate world_raycast_all(world, from, to, opts \\ []),
+    to: ExCollision.World,
+    as: :raycast_all
 end

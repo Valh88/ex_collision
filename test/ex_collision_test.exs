@@ -348,6 +348,91 @@ defmodule ExCollisionTest do
     end
   end
 
+  describe "Raycast" do
+    test "луч попадает в статическое тело — возвращает {:hit, t, point, {:static, _}}" do
+      world = World.new()
+      world = World.add_static(world, AABB.from_xywh(50, 0, 16, 100))
+      # Луч слева направо: (0, 50) → (200, 50), стена x=50..66
+      assert {:hit, t, {hx, _hy}, {:static, _}} = World.raycast(world, {0, 50}, {200, 50})
+      assert_in_delta t, 50 / 200, 0.001
+      assert_in_delta hx, 50.0, 0.01
+    end
+
+    test "луч не попадает ни в одно тело — :miss" do
+      world = World.new()
+      world = World.add_static(world, AABB.from_xywh(50, 200, 16, 16))
+      assert :miss = World.raycast(world, {0, 50}, {100, 50})
+    end
+
+    test "луч попадает в динамическое тело — возвращает {:hit, t, point, {:body, id}}" do
+      world = World.new()
+      target = World.Body.from_xywh(:enemy, 80, 40, 16, 16)
+      {world, target_id} = World.add_body(world, target)
+      assert {:hit, t, {hx, _}, {:body, ^target_id}} = World.raycast(world, {0, 48}, {200, 48})
+      assert_in_delta hx, 80.0, 0.01
+      assert t > 0 and t < 1
+    end
+
+    test "луч не доходит до тела (конечная точка раньше) — :miss" do
+      world = World.new()
+      world = World.add_static(world, AABB.from_xywh(100, 0, 16, 100))
+      # Луч заканчивается в (50, 50) — до стены на x=100
+      assert :miss = World.raycast(world, {0, 50}, {50, 50})
+    end
+
+    test "check_static: false — статические тела игнорируются" do
+      world = World.new()
+      world = World.add_static(world, AABB.from_xywh(50, 0, 16, 100))
+      assert :miss = World.raycast(world, {0, 50}, {200, 50}, check_static: false)
+    end
+
+    test "check_dynamic: false — динамические тела игнорируются" do
+      world = World.new()
+      target = World.Body.from_xywh(:enemy, 50, 40, 16, 16)
+      {world, _target_id} = World.add_body(world, target)
+      assert :miss = World.raycast(world, {0, 48}, {200, 48}, check_dynamic: false)
+    end
+
+    test "exclude_body_id — тело-источник луча не учитывается" do
+      world = World.new()
+      # Стрелок в (0,40) 16x16 — луч начинается внутри него
+      shooter = World.Body.from_xywh(:shooter, 0, 40, 16, 16)
+      target = World.Body.from_xywh(:enemy, 100, 40, 16, 16)
+      {world, shooter_id} = World.add_body(world, shooter)
+      {world, target_id} = World.add_body(world, target)
+      result = World.raycast(world, {0, 48}, {200, 48}, exclude_body_id: shooter_id)
+      assert {:hit, _, _, {:body, ^target_id}} = result
+    end
+
+    test "raycast_all — возвращает все попадания, отсортированные по t" do
+      world = World.new()
+      world = World.add_static(world, AABB.from_xywh(30, 0, 10, 100))
+      world = World.add_static(world, AABB.from_xywh(70, 0, 10, 100))
+      hits = World.raycast_all(world, {0, 50}, {200, 50})
+      assert length(hits) == 2
+      [{t1, _, _}, {t2, _, _}] = hits
+      assert t1 < t2
+      assert_in_delta t1, 30 / 200, 0.001
+      assert_in_delta t2, 70 / 200, 0.001
+    end
+
+    test "луч параллельно стене (dx=0) — попадание если x совпадает" do
+      world = World.new()
+      # Вертикальная стена x=10..26, y=0..100. Луч идёт вниз (x=15) — внутри стены по x
+      world = World.add_static(world, AABB.from_xywh(10, 50, 16, 16))
+      assert {:hit, _, _, {:static, _}} = World.raycast(world, {18, 0}, {18, 100})
+    end
+
+    test "луч попадает в ближайшее из двух тел" do
+      world = World.new()
+      near = World.Body.from_xywh(:near, 30, 40, 16, 16)
+      far = World.Body.from_xywh(:far, 80, 40, 16, 16)
+      {world, near_id} = World.add_body(world, near)
+      {world, _far_id} = World.add_body(world, far)
+      assert {:hit, _, _, {:body, ^near_id}} = World.raycast(world, {0, 48}, {200, 48})
+    end
+  end
+
   defp run_steps_until(world, bullet_id, target_id, max_steps, step_fun) do
     Enum.reduce_while(1..max_steps, world, fn _i, w ->
       w = step_fun.(w)
