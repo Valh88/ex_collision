@@ -471,4 +471,69 @@ defmodule ExCollisionTest do
       assert Vec2.add(v, Vec2.new(3, 4)) |> then(&(&1.x == 4 and &1.y == 6))
     end
   end
+
+  describe "Protocols.Collidable" do
+    test "AABB implements Collidable protocol" do
+      aabb = AABB.from_xywh(10, 20, 8, 8)
+      assert ExCollision.Protocols.Collidable.aabb(aabb) == aabb
+    end
+
+    test "World.Body implements Collidable protocol" do
+      body = World.Body.from_xywh(:player, 5, 10, 16, 16)
+      result = ExCollision.Protocols.Collidable.aabb(body)
+      assert %AABB{} = result
+      assert result.min_x == 5 and result.min_y == 10
+      assert result.max_x == 21 and result.max_y == 26
+    end
+
+    test "Collidable protocol allows polymorphic collision checks" do
+      body = World.Body.from_xywh(:enemy, 50, 50, 10, 10)
+      aabb = AABB.from_xywh(55, 55, 10, 10)
+      
+      body_aabb = ExCollision.Protocols.Collidable.aabb(body)
+      static_aabb = ExCollision.Protocols.Collidable.aabb(aabb)
+      
+      assert AABB.intersects?(body_aabb, static_aabb)
+    end
+  end
+
+  describe "Protocols.TileSource" do
+    test "TileLayer implements TileSource protocol" do
+      map = Parser.parse!(@dun_tmx)
+      layer = Map.layer_by_name(map, "Floor")
+      
+      assert ExCollision.Protocols.TileSource.width(layer) == 38
+      assert ExCollision.Protocols.TileSource.height(layer) == 29
+      assert is_integer(ExCollision.Protocols.TileSource.tile_at(layer, 0))
+    end
+
+    test "TileLayerTileSource implements TileSource protocol" do
+      map = Parser.parse!(@dun_tmx)
+      layer = Map.layer_by_name(map, "Floor")
+      source = TileLayerTileSource.new(layer)
+      
+      assert ExCollision.Protocols.TileSource.width(source) == 38
+      assert ExCollision.Protocols.TileSource.height(source) == 29
+      tile = ExCollision.Protocols.TileSource.tile_at(source, 0)
+      assert is_integer(tile)
+      
+      walkable = ExCollision.Protocols.TileSource.walkable?(source, 0)
+      assert is_boolean(walkable)
+    end
+
+    test "TileSource walkable? returns false for wall tiles" do
+      map = Parser.parse!(@dun_tmx)
+      walls_layer = Map.layer_by_name(map, "Walls")
+      source = TileLayerTileSource.new(walls_layer)
+      
+      # Ищем индекс стены (не 0)
+      wall_index = Enum.find_index(0..(38 * 29 - 1), fn i -> 
+        ExCollision.Protocols.TileSource.tile_at(source, i) != 0
+      end)
+      
+      if wall_index do
+        refute ExCollision.Protocols.TileSource.walkable?(source, wall_index)
+      end
+    end
+  end
 end
