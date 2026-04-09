@@ -14,7 +14,8 @@ defmodule ExCollision.TMX.Map do
     width: 0,
     height: 0,
     tile_width: 16,
-    tile_height: 16
+    tile_height: 16,
+    properties: %{}
   ]
 
   @doc "Returns layer by name (tile layer or object group)"
@@ -39,6 +40,7 @@ defmodule ExCollision.TMX.Map do
           next_layer_id: non_neg_integer(),
           next_object_id: non_neg_integer(),
           tilesets: [ExCollision.TMX.Tileset.t()],
-          layers: [ExCollision.TMX.Layer.t()]
+          layers: [ExCollision.TMX.Layer.t()],
+          properties: %{String.t() => term()}
         }
 end

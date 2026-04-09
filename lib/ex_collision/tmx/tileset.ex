@@ -2,7 +2,7 @@ defmodule ExCollision.TMX.Tileset do
   @moduledoc """
   TMX tileset.
   """
-  defstruct [:first_gid, :name, :tile_width, :tile_height, :columns, :tile_count]
+  defstruct [:first_gid, :name, :tile_width, :tile_height, :columns, :tile_count, properties: %{}]
 
   @type t :: %__MODULE__{
           first_gid: non_neg_integer(),
@@ -10,6 +10,7 @@ defmodule ExCollision.TMX.Tileset do
           tile_width: non_neg_integer(),
           tile_height: non_neg_integer(),
           columns: non_neg_integer() | nil,
-          tile_count: non_neg_integer() | nil
+          tile_count: non_neg_integer() | nil,
+          properties: %{String.t() => term()}
         }
 end

@@ -2,7 +2,7 @@ defmodule ExCollisionTest do
   use ExUnit.Case, async: true
 
   alias ExCollision.TMX.Parser
-  alias ExCollision.TMX.{Map, TileLayer, WorldBuilder}
+  alias ExCollision.TMX.{Map, TileLayer, ObjectGroup, WorldBuilder}
   alias ExCollision.World
   alias ExCollision.Geometry.{AABB, Vec2}
   alias ExCollision.Pathfinding.AStar
@@ -35,6 +35,57 @@ defmodule ExCollisionTest do
       map = Parser.parse!(@dun_tmx)
       layer = Map.layer_by_name(map, "Floor")
       assert %TileLayer{} = layer
+    end
+
+    test "properties on map, layer, object — парсятся в map()" do
+      xml = """
+      <?xml version="1.0" encoding="UTF-8"?>
+      <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down"
+           width="2" height="2" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+        <properties>
+          <property name="music" value="dungeon"/>
+          <property name="hp" type="int" value="42"/>
+          <property name="boss" type="bool" value="true"/>
+        </properties>
+        <tileset firstgid="1" name="t" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+          <properties>
+            <property name="ts_prop" value="x"/>
+          </properties>
+        </tileset>
+        <layer id="1" name="L" width="2" height="2">
+          <properties>
+            <property name="depth" type="int" value="3"/>
+          </properties>
+          <data encoding="csv">0,0,0,0</data>
+        </layer>
+        <objectgroup id="2" name="O">
+          <properties>
+            <property name="og" value="1"/>
+          </properties>
+          <object id="1" x="0" y="0" width="10" height="10">
+            <properties>
+              <property name="spawn" type="bool" value="false"/>
+            </properties>
+          </object>
+        </objectgroup>
+      </map>
+      """
+
+      map = Parser.parse_xml!(xml)
+      assert map.properties["music"] == "dungeon"
+      assert map.properties["hp"] == 42
+      assert map.properties["boss"] == true
+
+      assert [%TileLayer{} = layer] = Enum.filter(map.layers, &match?(%TileLayer{}, &1))
+      assert layer.properties["depth"] == 3
+
+      [ts] = map.tilesets
+      assert ts.properties["ts_prop"] == "x"
+
+      [%ObjectGroup{} = og] = Enum.filter(map.layers, &match?(%ObjectGroup{}, &1))
+      assert og.properties["og"] == "1"
+      [obj] = og.objects
+      assert obj.properties["spawn"] == false
     end
   end
 
@@ -345,6 +396,23 @@ defmodule ExCollisionTest do
       {:ok, {cx_half, cy_half}} = World.get_interpolated_center(world, bullet_id, 0.5)
       assert_in_delta cx_half, 4.5, 0.001
       assert_in_delta cy_half, 4.5, 0.001
+    end
+
+    test "clamp: alpha ограничивается [0, 1] при clamp: true и в *_clamped/3" do
+      world = World.new()
+      bullet = World.Body.from_xywh(:bullet, 100, 50, 8, 8, velocity: {300, 0})
+      {world, bullet_id} = World.add_body(world, bullet)
+      world = World.step(world, @dt)
+
+      {:ok, at_one} = World.get_interpolated_position(world, bullet_id, 1.0)
+      {:ok, clamped_opts} = World.get_interpolated_position(world, bullet_id, 1.5, clamp: true)
+      {:ok, clamped_fn} = World.get_interpolated_position_clamped(world, bullet_id, 1.5)
+      assert clamped_opts == at_one
+      assert clamped_fn == at_one
+
+      {:ok, at_zero} = World.get_interpolated_position(world, bullet_id, 0.0)
+      {:ok, neg_clamped} = World.get_interpolated_position(world, bullet_id, -0.5, clamp: true)
+      assert neg_clamped == at_zero
     end
   end
 

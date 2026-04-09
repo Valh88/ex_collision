@@ -256,20 +256,40 @@ defmodule ExCollision.World do
   Interpolated body position for smooth rendering.
   alpha in [0, 1]: 0 = previous frame, 1 = current (e.g.: time_since_step / step_interval).
   Returns {:ok, {x, y}} — top-left corner, or {:error, :not_found}.
+
+  Options:
+  - `:clamp` — if `true`, clamps `alpha` to `[0, 1]` before interpolating (default `false`).
   """
-  def get_interpolated_position(world, body_id, alpha) do
+  def get_interpolated_position(world, body_id, alpha, opts \\ []) do
     case get_body(world, body_id) do
       nil -> {:error, :not_found}
-      body -> {:ok, Body.interpolated_position(body, alpha)}
+      body -> {:ok, Body.interpolated_position(body, alpha, opts)}
     end
   end
 
-  @doc "Interpolated body center (for sprite rendering by center)"
-  def get_interpolated_center(world, body_id, alpha) do
+  @doc """
+  Same as `get_interpolated_position/4` with `clamp: true`.
+  """
+  def get_interpolated_position_clamped(world, body_id, alpha) do
+    get_interpolated_position(world, body_id, alpha, clamp: true)
+  end
+
+  @doc """
+  Interpolated body center (for sprite rendering by center).
+
+  Options:
+  - `:clamp` — if `true`, clamps `alpha` to `[0, 1]` before interpolating (default `false`).
+  """
+  def get_interpolated_center(world, body_id, alpha, opts \\ []) do
     case get_body(world, body_id) do
       nil -> {:error, :not_found}
-      body -> {:ok, Body.interpolated_center(body, alpha)}
+      body -> {:ok, Body.interpolated_center(body, alpha, opts)}
     end
+  end
+
+  @doc "Same as `get_interpolated_center/4` with `clamp: true`."
+  def get_interpolated_center_clamped(world, body_id, alpha) do
+    get_interpolated_center(world, body_id, alpha, clamp: true)
   end
 
   @doc """

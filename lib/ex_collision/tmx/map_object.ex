@@ -18,7 +18,8 @@ defmodule ExCollision.TMX.MapObject do
     :rotation,
     :visible,
     :polygon_points,
-    :polyline_points
+    :polyline_points,
+    properties: %{}
   ]
 
   @type t :: %__MODULE__{
@@ -33,6 +34,7 @@ defmodule ExCollision.TMX.MapObject do
           rotation: float(),
           visible: boolean(),
           polygon_points: [{float(), float()}],
-          polyline_points: [{float(), float()}]
+          polyline_points: [{float(), float()}],
+          properties: %{String.t() => term()}
         }
 end

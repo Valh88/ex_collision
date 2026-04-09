@@ -16,7 +16,7 @@ The project uses Elixir features: protocols (`Collidable`, `TileSource`), delega
 ```elixir
 def deps do
   [
-    {:ex_collision, "~> 0.1.0"}
+    {:ex_collision, "~> 1.1.0"}
   ]
 end
 ```

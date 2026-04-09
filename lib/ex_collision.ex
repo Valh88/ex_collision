@@ -34,6 +34,7 @@ defmodule ExCollision do
 
       # Interpolation for smooth rendering (alpha = time since last step / step interval)
       {:ok, {x, y}} = ExCollision.World.get_interpolated_position(world, player_id, 0.5)
+      # Optional: clamp alpha to [0, 1]: get_interpolated_position(..., clamp: true) or get_interpolated_position_clamped/3
   """
 
   # Delegates to submodules for convenient API
@@ -54,10 +55,25 @@ defmodule ExCollision do
   @doc "Set body velocity (vx, vy) in pixels/sec"
   defdelegate world_set_velocity(world, body_id, vx, vy), to: ExCollision.World, as: :set_velocity
 
-  @doc "Interpolated body position for rendering (alpha in 0..1)"
-  defdelegate world_interpolated_position(world, body_id, alpha),
+  @doc "Interpolated body position for rendering. Pass `clamp: true` in opts to clamp alpha to [0, 1]."
+  defdelegate world_interpolated_position(world, body_id, alpha, opts \\ []),
     to: ExCollision.World,
     as: :get_interpolated_position
+
+  @doc "Same as `world_interpolated_position/4` with alpha clamped to [0, 1]."
+  defdelegate world_interpolated_position_clamped(world, body_id, alpha),
+    to: ExCollision.World,
+    as: :get_interpolated_position_clamped
+
+  @doc "Interpolated body center. Pass `clamp: true` in opts to clamp alpha to [0, 1]."
+  defdelegate world_interpolated_center(world, body_id, alpha, opts \\ []),
+    to: ExCollision.World,
+    as: :get_interpolated_center
+
+  @doc "Same as `world_interpolated_center/4` with alpha clamped to [0, 1]."
+  defdelegate world_interpolated_center_clamped(world, body_id, alpha),
+    to: ExCollision.World,
+    as: :get_interpolated_center_clamped
 
   # API for adding/removing objects in the world
   @doc "Add object (Body) to world. Returns {world, id}."

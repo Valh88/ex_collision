@@ -1,7 +1,7 @@
 defmodule ExCollision.TMX.Parser do
   @moduledoc """
   Parser for Tiled TMX files (XML).
-  Supports tile layers (CSV/base64), objectgroup, tilesets.
+  Supports tile layers (CSV/base64), objectgroup, tilesets, and `<properties>` on map, tileset, layer, objectgroup, and object.
   """
 
   import SweetXml
@@ -52,7 +52,8 @@ defmodule ExCollision.TMX.Parser do
       next_layer_id: (xpath(map_el, ~x"./@nextlayerid"s) || "") |> parse_int(),
       next_object_id: (xpath(map_el, ~x"./@nextobjectid"s) || "") |> parse_int(),
       tilesets: tilesets,
-      layers: layers
+      layers: layers,
+      properties: parse_properties(map_el)
     }
   end
 
@@ -69,7 +70,8 @@ defmodule ExCollision.TMX.Parser do
       tile_width: (xpath(ts_el, ~x"./@tilewidth"s) || "") |> parse_int(),
       tile_height: (xpath(ts_el, ~x"./@tileheight"s) || "") |> parse_int(),
       columns: (xpath(ts_el, ~x"./@columns"s) || "") |> parse_int_opt(),
-      tile_count: (xpath(ts_el, ~x"./@tilecount"s) || "") |> parse_int_opt()
+      tile_count: (xpath(ts_el, ~x"./@tilecount"s) || "") |> parse_int_opt(),
+      properties: parse_properties(ts_el)
     }
   end
 
@@ -101,7 +103,8 @@ defmodule ExCollision.TMX.Parser do
       height: height,
       opacity: xpath(el, ~x"./@opacity"s) |> parse_float_opt() || 1.0,
       visible: (xpath(el, ~x"./@visible"s) || "1") != "0",
-      data: gids
+      data: gids,
+      properties: parse_properties(el)
     }
   end
 
@@ -115,7 +118,8 @@ defmodule ExCollision.TMX.Parser do
       id: (xpath(el, ~x"./@id"s) || "") |> parse_int(),
       name: xpath(el, ~x"./@name"s) || "",
       visible: (xpath(el, ~x"./@visible"s) || "1") != "0",
-      objects: objects
+      objects: objects,
+      properties: parse_properties(el)
     }
   end
 
@@ -135,7 +139,8 @@ defmodule ExCollision.TMX.Parser do
       rotation: xpath(obj_el, ~x"./@rotation"s) |> parse_float_opt() || 0,
       visible: (xpath(obj_el, ~x"./@visible"s) || "1") != "0",
       polygon_points: polygon,
-      polyline_points: polyline
+      polyline_points: polyline,
+      properties: parse_properties(obj_el)
     }
   end
 
@@ -257,6 +262,46 @@ defmodule ExCollision.TMX.Parser do
       :error -> nil
     end
   end
+
+  defp parse_properties(parent_el) do
+    parent_el
+    |> xpath(~x"./properties/property"l)
+    |> Enum.reduce(%{}, fn prop_el, acc ->
+      name = xpath(prop_el, ~x"./@name"s) || ""
+      value = xpath(prop_el, ~x"./@value"s)
+      type = xpath(prop_el, ~x"./@type"s) || "string"
+
+      if name == "" do
+        acc
+      else
+        Elixir.Map.put(acc, name, parse_property_value(value, type))
+      end
+    end)
+  end
+
+  defp parse_property_value(nil, _), do: ""
+
+  defp parse_property_value(v, "int") when is_binary(v) do
+    case Integer.parse(String.trim(v)) do
+      {i, _} -> i
+      :error -> v
+    end
+  end
+
+  defp parse_property_value(v, "float") when is_binary(v) do
+    case Float.parse(String.trim(v)) do
+      {f, _} -> f
+      :error -> v
+    end
+  end
+
+  defp parse_property_value(v, "bool"), do: v == "true"
+  defp parse_property_value(v, "color"), do: v
+  defp parse_property_value(v, "file"), do: v
+  defp parse_property_value(v, "object"), do: v
+
+  defp parse_property_value(v, _) when is_binary(v), do: v
+  defp parse_property_value(v, _), do: to_string(v)
 
   defp trim_cdata(nil), do: ""
   defp trim_cdata(s) when is_list(s), do: s |> to_string() |> String.trim()

@@ -2,7 +2,7 @@ defmodule ExCollision.TMX.TileLayer do
   @moduledoc """
   TMX tile layer (tile grid with data).
   """
-  defstruct [:id, :name, :width, :height, :opacity, :visible, :data]
+  defstruct [:id, :name, :width, :height, :opacity, :visible, :data, properties: %{}]
 
   @type t :: %__MODULE__{
           id: non_neg_integer(),
@@ -11,6 +11,7 @@ defmodule ExCollision.TMX.TileLayer do
           height: non_neg_integer(),
           opacity: float(),
           visible: boolean(),
-          data: [non_neg_integer()]
+          data: [non_neg_integer()],
+          properties: %{String.t() => term()}
         }
 end

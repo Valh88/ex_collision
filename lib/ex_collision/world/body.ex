@@ -97,13 +97,19 @@ defmodule ExCollision.World.Body do
   Interpolated center position for smooth rendering.
   alpha in [0, 1]: 0 = previous frame, 1 = current frame.
   If previous_aabb is nil, returns current center.
+
+  Options:
+  - `:clamp` — if `true`, clamps `alpha` to `[0, 1]` before interpolating (default `false`).
   """
-  def interpolated_center(%__MODULE__{aabb: aabb, previous_aabb: nil}, _alpha) do
+  def interpolated_center(body, alpha, opts \\ [])
+
+  def interpolated_center(%__MODULE__{aabb: aabb, previous_aabb: nil}, _alpha, _opts) do
     AABB.center(aabb)
   end
 
-  def interpolated_center(%__MODULE__{aabb: aabb, previous_aabb: prev}, alpha)
+  def interpolated_center(%__MODULE__{aabb: aabb, previous_aabb: prev}, alpha, opts)
       when is_number(alpha) do
+    alpha = maybe_clamp_alpha(alpha, Keyword.get(opts, :clamp, false))
     %ExCollision.Geometry.Vec2{x: cx, y: cy} = AABB.center(aabb)
     %ExCollision.Geometry.Vec2{x: px, y: py} = AABB.center(prev)
     # prev + (current - prev) * alpha
@@ -113,18 +119,28 @@ defmodule ExCollision.World.Body do
     }
   end
 
-  @doc "Interpolated top-left corner (min_x, min_y)"
-  def interpolated_position(%__MODULE__{aabb: aabb, previous_aabb: nil}, _alpha) do
+  @doc "Interpolated top-left corner (min_x, min_y). Options: `:clamp` — clamp alpha to [0, 1]."
+  def interpolated_position(body, alpha, opts \\ [])
+
+  def interpolated_position(%__MODULE__{aabb: aabb, previous_aabb: nil}, _alpha, _opts) do
     {aabb.min_x, aabb.min_y}
   end
 
-  def interpolated_position(%__MODULE__{aabb: aabb, previous_aabb: prev}, alpha)
+  def interpolated_position(%__MODULE__{aabb: aabb, previous_aabb: prev}, alpha, opts)
       when is_number(alpha) do
+    alpha = maybe_clamp_alpha(alpha, Keyword.get(opts, :clamp, false))
     {
       prev.min_x + (aabb.min_x - prev.min_x) * alpha,
       prev.min_y + (aabb.min_y - prev.min_y) * alpha
     }
   end
+
+  defp maybe_clamp_alpha(alpha, true) when is_number(alpha), do: clamp01(alpha)
+  defp maybe_clamp_alpha(alpha, _), do: alpha
+
+  defp clamp01(a) when is_number(a) and a < 0, do: 0.0
+  defp clamp01(a) when is_number(a) and a > 1, do: 1.0
+  defp clamp01(a) when is_number(a), do: a * 1.0
 end
 
 defimpl ExCollision.Protocols.Collidable, for: ExCollision.World.Body do
